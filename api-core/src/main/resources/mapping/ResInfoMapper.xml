@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.pms.dao.ResInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.pms.model.ResInfo" >
+    <id column="RES_ID" property="resId" jdbcType="VARCHAR" />
+    <result column="RES_NO" property="resNo" jdbcType="VARCHAR" />
+    <result column="RES_NAME" property="resName" jdbcType="VARCHAR" />
+    <result column="RES_PATH" property="resPath" jdbcType="VARCHAR" />
+    <result column="RES_DESC" property="resDesc" jdbcType="VARCHAR" />
+    <result column="P_ID" property="pId" jdbcType="VARCHAR" />
+    <result column="SEQ" property="seq" jdbcType="DECIMAL" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    RES_ID, RES_NO, RES_NAME, RES_PATH, RES_DESC, P_ID, SEQ, ICON, APP_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.pms.model.ResInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from CC_PMS_RES_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from CC_PMS_RES_INFO
+    where RES_ID = #{resId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from CC_PMS_RES_INFO
+    where RES_ID = #{resId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.pms.model.ResInfoExample" >
+    delete from CC_PMS_RES_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.pms.model.ResInfo" >
+    insert into CC_PMS_RES_INFO (RES_ID, RES_NO, RES_NAME, 
+      RES_PATH, RES_DESC, P_ID, 
+      SEQ, ICON, APP_ID)
+    values (#{resId,jdbcType=VARCHAR}, #{resNo,jdbcType=VARCHAR}, #{resName,jdbcType=VARCHAR}, 
+      #{resPath,jdbcType=VARCHAR}, #{resDesc,jdbcType=VARCHAR}, #{pId,jdbcType=VARCHAR}, 
+      #{seq,jdbcType=DECIMAL}, #{icon,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.pms.model.ResInfo" >
+    insert into CC_PMS_RES_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resId != null" >
+        RES_ID,
+      </if>
+      <if test="resNo != null" >
+        RES_NO,
+      </if>
+      <if test="resName != null" >
+        RES_NAME,
+      </if>
+      <if test="resPath != null" >
+        RES_PATH,
+      </if>
+      <if test="resDesc != null" >
+        RES_DESC,
+      </if>
+      <if test="pId != null" >
+        P_ID,
+      </if>
+      <if test="seq != null" >
+        SEQ,
+      </if>
+      <if test="icon != null" >
+        ICON,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resId != null" >
+        #{resId,jdbcType=VARCHAR},
+      </if>
+      <if test="resNo != null" >
+        #{resNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resName != null" >
+        #{resName,jdbcType=VARCHAR},
+      </if>
+      <if test="resPath != null" >
+        #{resPath,jdbcType=VARCHAR},
+      </if>
+      <if test="resDesc != null" >
+        #{resDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.pms.model.ResInfoExample" resultType="java.lang.Integer" >
+    select count(*) from CC_PMS_RES_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update CC_PMS_RES_INFO
+    <set >
+      <if test="record.resId != null" >
+        RES_ID = #{record.resId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resNo != null" >
+        RES_NO = #{record.resNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resName != null" >
+        RES_NAME = #{record.resName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resPath != null" >
+        RES_PATH = #{record.resPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resDesc != null" >
+        RES_DESC = #{record.resDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null" >
+        P_ID = #{record.pId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seq != null" >
+        SEQ = #{record.seq,jdbcType=DECIMAL},
+      </if>
+      <if test="record.icon != null" >
+        ICON = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appId != null" >
+        APP_ID = #{record.appId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update CC_PMS_RES_INFO
+    set RES_ID = #{record.resId,jdbcType=VARCHAR},
+      RES_NO = #{record.resNo,jdbcType=VARCHAR},
+      RES_NAME = #{record.resName,jdbcType=VARCHAR},
+      RES_PATH = #{record.resPath,jdbcType=VARCHAR},
+      RES_DESC = #{record.resDesc,jdbcType=VARCHAR},
+      P_ID = #{record.pId,jdbcType=VARCHAR},
+      SEQ = #{record.seq,jdbcType=DECIMAL},
+      ICON = #{record.icon,jdbcType=VARCHAR},
+      APP_ID = #{record.appId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.pms.model.ResInfo" >
+    update CC_PMS_RES_INFO
+    <set >
+      <if test="resNo != null" >
+        RES_NO = #{resNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resName != null" >
+        RES_NAME = #{resName,jdbcType=VARCHAR},
+      </if>
+      <if test="resPath != null" >
+        RES_PATH = #{resPath,jdbcType=VARCHAR},
+      </if>
+      <if test="resDesc != null" >
+        RES_DESC = #{resDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        P_ID = #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        SEQ = #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="icon != null" >
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RES_ID = #{resId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.pms.model.ResInfo" >
+    update CC_PMS_RES_INFO
+    set RES_NO = #{resNo,jdbcType=VARCHAR},
+      RES_NAME = #{resName,jdbcType=VARCHAR},
+      RES_PATH = #{resPath,jdbcType=VARCHAR},
+      RES_DESC = #{resDesc,jdbcType=VARCHAR},
+      P_ID = #{pId,jdbcType=VARCHAR},
+      SEQ = #{seq,jdbcType=DECIMAL},
+      ICON = #{icon,jdbcType=VARCHAR},
+      APP_ID = #{appId,jdbcType=VARCHAR}
+    where RES_ID = #{resId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByAppId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from CC_PMS_RES_INFO
+    where 1=1
+    and APP_ID = #{appId,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.base.dao.DataDicMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.base.model.DataDic" >
+    <id column="DIC_ID" property="dicId" jdbcType="INTEGER" />
+    <result column="DIC_NAME" property="dicName" jdbcType="VARCHAR" />
+    <result column="DIC_NO" property="dicNo" jdbcType="VARCHAR" />
+    <result column="DIC_KEY" property="dicKey" jdbcType="VARCHAR" />
+    <result column="DIC_VALUE" property="dicValue" jdbcType="VARCHAR" />
+    <result column="SEQ" property="seq" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DIC_ID, DIC_NAME, DIC_NO, DIC_KEY, DIC_VALUE, SEQ, STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.base.model.DataDicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cc_data_dic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cc_data_dic
+    where DIC_ID = #{dicId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cc_data_dic
+    where DIC_ID = #{dicId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.base.model.DataDicExample" >
+    delete from cc_data_dic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.base.model.DataDic" >
+    insert into cc_data_dic (DIC_ID, DIC_NAME, DIC_NO, 
+      DIC_KEY, DIC_VALUE, SEQ, 
+      STATUS)
+    values (#{dicId,jdbcType=INTEGER}, #{dicName,jdbcType=VARCHAR}, #{dicNo,jdbcType=VARCHAR}, 
+      #{dicKey,jdbcType=VARCHAR}, #{dicValue,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.base.model.DataDic" >
+    insert into cc_data_dic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dicId != null" >
+        DIC_ID,
+      </if>
+      <if test="dicName != null" >
+        DIC_NAME,
+      </if>
+      <if test="dicNo != null" >
+        DIC_NO,
+      </if>
+      <if test="dicKey != null" >
+        DIC_KEY,
+      </if>
+      <if test="dicValue != null" >
+        DIC_VALUE,
+      </if>
+      <if test="seq != null" >
+        SEQ,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dicId != null" >
+        #{dicId,jdbcType=INTEGER},
+      </if>
+      <if test="dicName != null" >
+        #{dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicNo != null" >
+        #{dicNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dicKey != null" >
+        #{dicKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicValue != null" >
+        #{dicValue,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.base.model.DataDicExample" resultType="java.lang.Integer" >
+    select count(*) from cc_data_dic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cc_data_dic
+    <set >
+      <if test="record.dicId != null" >
+        DIC_ID = #{record.dicId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dicName != null" >
+        DIC_NAME = #{record.dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dicNo != null" >
+        DIC_NO = #{record.dicNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dicKey != null" >
+        DIC_KEY = #{record.dicKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dicValue != null" >
+        DIC_VALUE = #{record.dicValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seq != null" >
+        SEQ = #{record.seq,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cc_data_dic
+    set DIC_ID = #{record.dicId,jdbcType=INTEGER},
+      DIC_NAME = #{record.dicName,jdbcType=VARCHAR},
+      DIC_NO = #{record.dicNo,jdbcType=VARCHAR},
+      DIC_KEY = #{record.dicKey,jdbcType=VARCHAR},
+      DIC_VALUE = #{record.dicValue,jdbcType=VARCHAR},
+      SEQ = #{record.seq,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.base.model.DataDic" >
+    update cc_data_dic
+    <set >
+      <if test="dicName != null" >
+        DIC_NAME = #{dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicNo != null" >
+        DIC_NO = #{dicNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dicKey != null" >
+        DIC_KEY = #{dicKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicValue != null" >
+        DIC_VALUE = #{dicValue,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        SEQ = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DIC_ID = #{dicId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.base.model.DataDic" >
+    update cc_data_dic
+    set DIC_NAME = #{dicName,jdbcType=VARCHAR},
+      DIC_NO = #{dicNo,jdbcType=VARCHAR},
+      DIC_KEY = #{dicKey,jdbcType=VARCHAR},
+      DIC_VALUE = #{dicValue,jdbcType=VARCHAR},
+      SEQ = #{seq,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where DIC_ID = #{dicId,jdbcType=INTEGER}
+  </update>
+
+  <select id="findByDicNo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    select
+    a.DIC_KEY "dicKey", a.DIC_VALUE "dicValue"
+    from cc_data_dic a
+    where 1=1
+    <if test="dicNo != null and dicNo != ''" >
+      and a.DIC_NO = #{dicNo,jdbcType=VARCHAR}
+    </if>
+    and a.STATUS = '1'
+    order by a.SEQ
+  </select>
+</mapper>

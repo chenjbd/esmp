@@ -1,0 +1,1357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.core.dao.PdPpInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.core.model.PdPpInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PLAN_CODE" property="planCode" jdbcType="VARCHAR" />
+    <result column="WORK_CONTENT" property="workContent" jdbcType="VARCHAR" />
+    <result column="PROPERTY" property="property" jdbcType="INTEGER" />
+    <result column="WORK_TYPE" property="workType" jdbcType="INTEGER" />
+    <result column="WORK_TEAM_OID" property="workTeamOid" jdbcType="VARCHAR" />
+    <result column="WORK_TEAM_OCODE" property="workTeamOcode" jdbcType="VARCHAR" />
+    <result column="WORK_TEAM_ONAME" property="workTeamOname" jdbcType="VARCHAR" />
+    <result column="PLAN_BEGIN_DATE" property="planBeginDate" jdbcType="TIMESTAMP" />
+    <result column="PLAN_END_DATE" property="planEndDate" jdbcType="TIMESTAMP" />
+    <result column="WORK_SITE_NAMES" property="workSiteNames" jdbcType="VARCHAR" />
+    <result column="PLAN_TYPE" property="planType" jdbcType="INTEGER" />
+    <result column="WORKING" property="working" jdbcType="INTEGER" />
+    <result column="PLAN_STATE" property="planState" jdbcType="INTEGER" />
+    <result column="PLAN_SOURCE_TYPE" property="planSourceType" jdbcType="INTEGER" />
+    <result column="CREATE_UID" property="createUid" jdbcType="VARCHAR" />
+    <result column="CREATE_UNAME" property="createUname" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="PLAN_CLASSIFY" property="planClassify" jdbcType="INTEGER" />
+    <result column="LIGHT_REMIND" property="lightRemind" jdbcType="INTEGER" />
+    <result column="WORK_MASTER_UID" property="workMasterUid" jdbcType="VARCHAR" />
+    <result column="WORK_MASTER_UNAME" property="workMasterUname" jdbcType="VARCHAR" />
+    <result column="WORK_MEMBER_UNAMES" property="workMemberUnames" jdbcType="VARCHAR" />
+    <result column="REAL_BEGIN_DATE" property="realBeginDate" jdbcType="TIMESTAMP" />
+    <result column="REAL_END_DATE" property="realEndDate" jdbcType="TIMESTAMP" />
+    <result column="COMPLETION_CONDITION" property="completionCondition" jdbcType="VARCHAR" />
+    <result column="VOLTAGE_LEVEL" property="voltageLevel" jdbcType="INTEGER" />
+    <result column="WORK_DAY" property="workDay" jdbcType="INTEGER" />
+    <result column="SPECIALITY" property="speciality" jdbcType="INTEGER" />
+    <result column="WORK_HOUR" property="workHour" jdbcType="INTEGER" />
+    <result column="PLAN_BEGIN_WEEK" property="planBeginWeek" jdbcType="INTEGER" />
+    <result column="IS_EXTERIOR_DEPT" property="isExteriorDept" jdbcType="INTEGER" />
+    <result column="PERSONNEL_COUNT" property="personnelCount" jdbcType="INTEGER" />
+    <result column="WORK_DEPT_OID" property="workDeptOid" jdbcType="VARCHAR" />
+    <result column="WORK_DEPT_ONAME" property="workDeptOname" jdbcType="VARCHAR" />
+    <result column="IS_BEQUEATH_QUESTION" property="isBequeathQuestion" jdbcType="INTEGER" />
+    <result column="MONITOR_OPINION" property="monitorOpinion" jdbcType="VARCHAR" />
+    <result column="AFFIRM_UID" property="affirmUid" jdbcType="VARCHAR" />
+    <result column="AFFIRM_UNAME" property="affirmUname" jdbcType="VARCHAR" />
+    <result column="AFFIRM_DATE" property="affirmDate" jdbcType="TIMESTAMP" />
+    <result column="ADVERT_PROCEEDING" property="advertProceeding" jdbcType="VARCHAR" />
+    <result column="WORK_SMALL_TYPE" property="workSmallType" jdbcType="INTEGER" />
+    <result column="EXECUTION_BACK_FLAG" property="executionBackFlag" jdbcType="INTEGER" />
+    <result column="IS_DEAL_DEFECT" property="isDealDefect" jdbcType="INTEGER" />
+    <result column="CURRENT_EXPERIMENT_DATE" property="currentExperimentDate" jdbcType="TIMESTAMP" />
+    <result column="RISK_LEVEL" property="riskLevel" jdbcType="INTEGER" />
+    <result column="RISK_VALUE" property="riskValue" jdbcType="DECIMAL" />
+    <result column="PATROL_CLASSIFY" property="patrolClassify" jdbcType="INTEGER" />
+    <result column="PATROL_OBJECT_SELECT_TYPE" property="patrolObjectSelectType" jdbcType="INTEGER" />
+    <result column="DISPATCH_WORK_UID" property="dispatchWorkUid" jdbcType="VARCHAR" />
+    <result column="DISPATCH_WORK_UNAME" property="dispatchWorkUname" jdbcType="VARCHAR" />
+    <result column="DOWNLOAD_STATE" property="downloadState" jdbcType="INTEGER" />
+    <result column="IS_SEND_NOTE_MASTER" property="isSendNoteMaster" jdbcType="INTEGER" />
+    <result column="IS_SEND_NOTE_MEMBER" property="isSendNoteMember" jdbcType="INTEGER" />
+    <result column="PLAN_REMARK" property="planRemark" jdbcType="VARCHAR" />
+    <result column="POWER_GRID_FLAG" property="powerGridFlag" jdbcType="INTEGER" />
+    <result column="EXTERIOR_DEPT_NAME" property="exteriorDeptName" jdbcType="VARCHAR" />
+    <result column="BEQUEATH_QUESTION" property="bequeathQuestion" jdbcType="VARCHAR" />
+    <result column="OPTIMISTIC_LOCK_VERSION" property="optimisticLockVersion" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="DATA_FROM" property="dataFrom" jdbcType="VARCHAR" />
+    <result column="BUREAU_CODE" property="bureauCode" jdbcType="VARCHAR" />
+    <result column="PROVINCE_CODE" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="FLOW_STATE" property="flowState" jdbcType="INTEGER" />
+    <result column="PROCESS_INS_ID" property="processInsId" jdbcType="VARCHAR" />
+    <result column="IS_NEED_OUTAGE_APPLY" property="isNeedOutageApply" jdbcType="INTEGER" />
+    <result column="IS_AERONEF_PATROL_COOPERATE" property="isAeronefPatrolCooperate" jdbcType="INTEGER" />
+    <result column="NOT_REL_TASKFORM" property="notRelTaskform" jdbcType="INTEGER" />
+    <result column="REL_TASK_FORM_TYPE" property="relTaskFormType" jdbcType="INTEGER" />
+    <result column="IS_GRIDDING_PATROL" property="isGriddingPatrol" jdbcType="INTEGER" />
+    <result column="IS_UAV_PATROL" property="isUavPatrol" jdbcType="INTEGER" />
+    <result column="IMPLEMENT_MODE" property="implementMode" jdbcType="INTEGER" />
+    <result column="IS_CABLE_CHANNEL_PATROL" property="isCableChannelPatrol" jdbcType="INTEGER" />
+    <result column="PATROL_MODE" property="patrolMode" jdbcType="INTEGER" />
+    <result column="WORK_SOURCE_TYPE" property="workSourceType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PLAN_CODE, WORK_CONTENT, PROPERTY, WORK_TYPE, WORK_TEAM_OID, WORK_TEAM_OCODE, 
+    WORK_TEAM_ONAME, PLAN_BEGIN_DATE, PLAN_END_DATE, WORK_SITE_NAMES, PLAN_TYPE, WORKING, 
+    PLAN_STATE, PLAN_SOURCE_TYPE, CREATE_UID, CREATE_UNAME, CREATE_DATE, PLAN_CLASSIFY, 
+    LIGHT_REMIND, WORK_MASTER_UID, WORK_MASTER_UNAME, WORK_MEMBER_UNAMES, REAL_BEGIN_DATE, 
+    REAL_END_DATE, COMPLETION_CONDITION, VOLTAGE_LEVEL, WORK_DAY, SPECIALITY, WORK_HOUR, 
+    PLAN_BEGIN_WEEK, IS_EXTERIOR_DEPT, PERSONNEL_COUNT, WORK_DEPT_OID, WORK_DEPT_ONAME, 
+    IS_BEQUEATH_QUESTION, MONITOR_OPINION, AFFIRM_UID, AFFIRM_UNAME, AFFIRM_DATE, ADVERT_PROCEEDING, 
+    WORK_SMALL_TYPE, EXECUTION_BACK_FLAG, IS_DEAL_DEFECT, CURRENT_EXPERIMENT_DATE, RISK_LEVEL, 
+    RISK_VALUE, PATROL_CLASSIFY, PATROL_OBJECT_SELECT_TYPE, DISPATCH_WORK_UID, DISPATCH_WORK_UNAME, 
+    DOWNLOAD_STATE, IS_SEND_NOTE_MASTER, IS_SEND_NOTE_MEMBER, PLAN_REMARK, POWER_GRID_FLAG, 
+    EXTERIOR_DEPT_NAME, BEQUEATH_QUESTION, OPTIMISTIC_LOCK_VERSION, UPDATE_TIME, DATA_FROM, 
+    BUREAU_CODE, PROVINCE_CODE, FLOW_STATE, PROCESS_INS_ID, IS_NEED_OUTAGE_APPLY, IS_AERONEF_PATROL_COOPERATE, 
+    NOT_REL_TASKFORM, REL_TASK_FORM_TYPE, IS_GRIDDING_PATROL, IS_UAV_PATROL, IMPLEMENT_MODE, 
+    IS_CABLE_CHANNEL_PATROL, PATROL_MODE, WORK_SOURCE_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.core.model.PdPpInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sp_pd_pp_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sp_pd_pp_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sp_pd_pp_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.core.model.PdPpInfoExample" >
+    delete from sp_pd_pp_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.core.model.PdPpInfo" >
+    insert into sp_pd_pp_info (ID, PLAN_CODE, WORK_CONTENT, 
+      PROPERTY, WORK_TYPE, WORK_TEAM_OID, 
+      WORK_TEAM_OCODE, WORK_TEAM_ONAME, PLAN_BEGIN_DATE, 
+      PLAN_END_DATE, WORK_SITE_NAMES, PLAN_TYPE, 
+      WORKING, PLAN_STATE, PLAN_SOURCE_TYPE, 
+      CREATE_UID, CREATE_UNAME, CREATE_DATE, 
+      PLAN_CLASSIFY, LIGHT_REMIND, WORK_MASTER_UID, 
+      WORK_MASTER_UNAME, WORK_MEMBER_UNAMES, REAL_BEGIN_DATE, 
+      REAL_END_DATE, COMPLETION_CONDITION, VOLTAGE_LEVEL, 
+      WORK_DAY, SPECIALITY, WORK_HOUR, 
+      PLAN_BEGIN_WEEK, IS_EXTERIOR_DEPT, PERSONNEL_COUNT, 
+      WORK_DEPT_OID, WORK_DEPT_ONAME, IS_BEQUEATH_QUESTION, 
+      MONITOR_OPINION, AFFIRM_UID, AFFIRM_UNAME, 
+      AFFIRM_DATE, ADVERT_PROCEEDING, WORK_SMALL_TYPE, 
+      EXECUTION_BACK_FLAG, IS_DEAL_DEFECT, CURRENT_EXPERIMENT_DATE, 
+      RISK_LEVEL, RISK_VALUE, PATROL_CLASSIFY, 
+      PATROL_OBJECT_SELECT_TYPE, DISPATCH_WORK_UID, 
+      DISPATCH_WORK_UNAME, DOWNLOAD_STATE, IS_SEND_NOTE_MASTER, 
+      IS_SEND_NOTE_MEMBER, PLAN_REMARK, POWER_GRID_FLAG, 
+      EXTERIOR_DEPT_NAME, BEQUEATH_QUESTION, OPTIMISTIC_LOCK_VERSION, 
+      UPDATE_TIME, DATA_FROM, BUREAU_CODE, 
+      PROVINCE_CODE, FLOW_STATE, PROCESS_INS_ID, 
+      IS_NEED_OUTAGE_APPLY, IS_AERONEF_PATROL_COOPERATE, 
+      NOT_REL_TASKFORM, REL_TASK_FORM_TYPE, IS_GRIDDING_PATROL, 
+      IS_UAV_PATROL, IMPLEMENT_MODE, IS_CABLE_CHANNEL_PATROL, 
+      PATROL_MODE, WORK_SOURCE_TYPE)
+    values (#{id,jdbcType=VARCHAR}, #{planCode,jdbcType=VARCHAR}, #{workContent,jdbcType=VARCHAR}, 
+      #{property,jdbcType=INTEGER}, #{workType,jdbcType=INTEGER}, #{workTeamOid,jdbcType=VARCHAR}, 
+      #{workTeamOcode,jdbcType=VARCHAR}, #{workTeamOname,jdbcType=VARCHAR}, #{planBeginDate,jdbcType=TIMESTAMP}, 
+      #{planEndDate,jdbcType=TIMESTAMP}, #{workSiteNames,jdbcType=VARCHAR}, #{planType,jdbcType=INTEGER}, 
+      #{working,jdbcType=INTEGER}, #{planState,jdbcType=INTEGER}, #{planSourceType,jdbcType=INTEGER}, 
+      #{createUid,jdbcType=VARCHAR}, #{createUname,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{planClassify,jdbcType=INTEGER}, #{lightRemind,jdbcType=INTEGER}, #{workMasterUid,jdbcType=VARCHAR}, 
+      #{workMasterUname,jdbcType=VARCHAR}, #{workMemberUnames,jdbcType=VARCHAR}, #{realBeginDate,jdbcType=TIMESTAMP}, 
+      #{realEndDate,jdbcType=TIMESTAMP}, #{completionCondition,jdbcType=VARCHAR}, #{voltageLevel,jdbcType=INTEGER}, 
+      #{workDay,jdbcType=INTEGER}, #{speciality,jdbcType=INTEGER}, #{workHour,jdbcType=INTEGER}, 
+      #{planBeginWeek,jdbcType=INTEGER}, #{isExteriorDept,jdbcType=INTEGER}, #{personnelCount,jdbcType=INTEGER}, 
+      #{workDeptOid,jdbcType=VARCHAR}, #{workDeptOname,jdbcType=VARCHAR}, #{isBequeathQuestion,jdbcType=INTEGER}, 
+      #{monitorOpinion,jdbcType=VARCHAR}, #{affirmUid,jdbcType=VARCHAR}, #{affirmUname,jdbcType=VARCHAR}, 
+      #{affirmDate,jdbcType=TIMESTAMP}, #{advertProceeding,jdbcType=VARCHAR}, #{workSmallType,jdbcType=INTEGER}, 
+      #{executionBackFlag,jdbcType=INTEGER}, #{isDealDefect,jdbcType=INTEGER}, #{currentExperimentDate,jdbcType=TIMESTAMP}, 
+      #{riskLevel,jdbcType=INTEGER}, #{riskValue,jdbcType=DECIMAL}, #{patrolClassify,jdbcType=INTEGER}, 
+      #{patrolObjectSelectType,jdbcType=INTEGER}, #{dispatchWorkUid,jdbcType=VARCHAR}, 
+      #{dispatchWorkUname,jdbcType=VARCHAR}, #{downloadState,jdbcType=INTEGER}, #{isSendNoteMaster,jdbcType=INTEGER}, 
+      #{isSendNoteMember,jdbcType=INTEGER}, #{planRemark,jdbcType=VARCHAR}, #{powerGridFlag,jdbcType=INTEGER}, 
+      #{exteriorDeptName,jdbcType=VARCHAR}, #{bequeathQuestion,jdbcType=VARCHAR}, #{optimisticLockVersion,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{dataFrom,jdbcType=VARCHAR}, #{bureauCode,jdbcType=VARCHAR}, 
+      #{provinceCode,jdbcType=VARCHAR}, #{flowState,jdbcType=INTEGER}, #{processInsId,jdbcType=VARCHAR}, 
+      #{isNeedOutageApply,jdbcType=INTEGER}, #{isAeronefPatrolCooperate,jdbcType=INTEGER}, 
+      #{notRelTaskform,jdbcType=INTEGER}, #{relTaskFormType,jdbcType=INTEGER}, #{isGriddingPatrol,jdbcType=INTEGER}, 
+      #{isUavPatrol,jdbcType=INTEGER}, #{implementMode,jdbcType=INTEGER}, #{isCableChannelPatrol,jdbcType=INTEGER}, 
+      #{patrolMode,jdbcType=INTEGER}, #{workSourceType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.core.model.PdPpInfo" >
+    insert into sp_pd_pp_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="planCode != null" >
+        PLAN_CODE,
+      </if>
+      <if test="workContent != null" >
+        WORK_CONTENT,
+      </if>
+      <if test="property != null" >
+        PROPERTY,
+      </if>
+      <if test="workType != null" >
+        WORK_TYPE,
+      </if>
+      <if test="workTeamOid != null" >
+        WORK_TEAM_OID,
+      </if>
+      <if test="workTeamOcode != null" >
+        WORK_TEAM_OCODE,
+      </if>
+      <if test="workTeamOname != null" >
+        WORK_TEAM_ONAME,
+      </if>
+      <if test="planBeginDate != null" >
+        PLAN_BEGIN_DATE,
+      </if>
+      <if test="planEndDate != null" >
+        PLAN_END_DATE,
+      </if>
+      <if test="workSiteNames != null" >
+        WORK_SITE_NAMES,
+      </if>
+      <if test="planType != null" >
+        PLAN_TYPE,
+      </if>
+      <if test="working != null" >
+        WORKING,
+      </if>
+      <if test="planState != null" >
+        PLAN_STATE,
+      </if>
+      <if test="planSourceType != null" >
+        PLAN_SOURCE_TYPE,
+      </if>
+      <if test="createUid != null" >
+        CREATE_UID,
+      </if>
+      <if test="createUname != null" >
+        CREATE_UNAME,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="planClassify != null" >
+        PLAN_CLASSIFY,
+      </if>
+      <if test="lightRemind != null" >
+        LIGHT_REMIND,
+      </if>
+      <if test="workMasterUid != null" >
+        WORK_MASTER_UID,
+      </if>
+      <if test="workMasterUname != null" >
+        WORK_MASTER_UNAME,
+      </if>
+      <if test="workMemberUnames != null" >
+        WORK_MEMBER_UNAMES,
+      </if>
+      <if test="realBeginDate != null" >
+        REAL_BEGIN_DATE,
+      </if>
+      <if test="realEndDate != null" >
+        REAL_END_DATE,
+      </if>
+      <if test="completionCondition != null" >
+        COMPLETION_CONDITION,
+      </if>
+      <if test="voltageLevel != null" >
+        VOLTAGE_LEVEL,
+      </if>
+      <if test="workDay != null" >
+        WORK_DAY,
+      </if>
+      <if test="speciality != null" >
+        SPECIALITY,
+      </if>
+      <if test="workHour != null" >
+        WORK_HOUR,
+      </if>
+      <if test="planBeginWeek != null" >
+        PLAN_BEGIN_WEEK,
+      </if>
+      <if test="isExteriorDept != null" >
+        IS_EXTERIOR_DEPT,
+      </if>
+      <if test="personnelCount != null" >
+        PERSONNEL_COUNT,
+      </if>
+      <if test="workDeptOid != null" >
+        WORK_DEPT_OID,
+      </if>
+      <if test="workDeptOname != null" >
+        WORK_DEPT_ONAME,
+      </if>
+      <if test="isBequeathQuestion != null" >
+        IS_BEQUEATH_QUESTION,
+      </if>
+      <if test="monitorOpinion != null" >
+        MONITOR_OPINION,
+      </if>
+      <if test="affirmUid != null" >
+        AFFIRM_UID,
+      </if>
+      <if test="affirmUname != null" >
+        AFFIRM_UNAME,
+      </if>
+      <if test="affirmDate != null" >
+        AFFIRM_DATE,
+      </if>
+      <if test="advertProceeding != null" >
+        ADVERT_PROCEEDING,
+      </if>
+      <if test="workSmallType != null" >
+        WORK_SMALL_TYPE,
+      </if>
+      <if test="executionBackFlag != null" >
+        EXECUTION_BACK_FLAG,
+      </if>
+      <if test="isDealDefect != null" >
+        IS_DEAL_DEFECT,
+      </if>
+      <if test="currentExperimentDate != null" >
+        CURRENT_EXPERIMENT_DATE,
+      </if>
+      <if test="riskLevel != null" >
+        RISK_LEVEL,
+      </if>
+      <if test="riskValue != null" >
+        RISK_VALUE,
+      </if>
+      <if test="patrolClassify != null" >
+        PATROL_CLASSIFY,
+      </if>
+      <if test="patrolObjectSelectType != null" >
+        PATROL_OBJECT_SELECT_TYPE,
+      </if>
+      <if test="dispatchWorkUid != null" >
+        DISPATCH_WORK_UID,
+      </if>
+      <if test="dispatchWorkUname != null" >
+        DISPATCH_WORK_UNAME,
+      </if>
+      <if test="downloadState != null" >
+        DOWNLOAD_STATE,
+      </if>
+      <if test="isSendNoteMaster != null" >
+        IS_SEND_NOTE_MASTER,
+      </if>
+      <if test="isSendNoteMember != null" >
+        IS_SEND_NOTE_MEMBER,
+      </if>
+      <if test="planRemark != null" >
+        PLAN_REMARK,
+      </if>
+      <if test="powerGridFlag != null" >
+        POWER_GRID_FLAG,
+      </if>
+      <if test="exteriorDeptName != null" >
+        EXTERIOR_DEPT_NAME,
+      </if>
+      <if test="bequeathQuestion != null" >
+        BEQUEATH_QUESTION,
+      </if>
+      <if test="optimisticLockVersion != null" >
+        OPTIMISTIC_LOCK_VERSION,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="dataFrom != null" >
+        DATA_FROM,
+      </if>
+      <if test="bureauCode != null" >
+        BUREAU_CODE,
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE,
+      </if>
+      <if test="flowState != null" >
+        FLOW_STATE,
+      </if>
+      <if test="processInsId != null" >
+        PROCESS_INS_ID,
+      </if>
+      <if test="isNeedOutageApply != null" >
+        IS_NEED_OUTAGE_APPLY,
+      </if>
+      <if test="isAeronefPatrolCooperate != null" >
+        IS_AERONEF_PATROL_COOPERATE,
+      </if>
+      <if test="notRelTaskform != null" >
+        NOT_REL_TASKFORM,
+      </if>
+      <if test="relTaskFormType != null" >
+        REL_TASK_FORM_TYPE,
+      </if>
+      <if test="isGriddingPatrol != null" >
+        IS_GRIDDING_PATROL,
+      </if>
+      <if test="isUavPatrol != null" >
+        IS_UAV_PATROL,
+      </if>
+      <if test="implementMode != null" >
+        IMPLEMENT_MODE,
+      </if>
+      <if test="isCableChannelPatrol != null" >
+        IS_CABLE_CHANNEL_PATROL,
+      </if>
+      <if test="patrolMode != null" >
+        PATROL_MODE,
+      </if>
+      <if test="workSourceType != null" >
+        WORK_SOURCE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="planCode != null" >
+        #{planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="workContent != null" >
+        #{workContent,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=INTEGER},
+      </if>
+      <if test="workType != null" >
+        #{workType,jdbcType=INTEGER},
+      </if>
+      <if test="workTeamOid != null" >
+        #{workTeamOid,jdbcType=VARCHAR},
+      </if>
+      <if test="workTeamOcode != null" >
+        #{workTeamOcode,jdbcType=VARCHAR},
+      </if>
+      <if test="workTeamOname != null" >
+        #{workTeamOname,jdbcType=VARCHAR},
+      </if>
+      <if test="planBeginDate != null" >
+        #{planBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndDate != null" >
+        #{planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workSiteNames != null" >
+        #{workSiteNames,jdbcType=VARCHAR},
+      </if>
+      <if test="planType != null" >
+        #{planType,jdbcType=INTEGER},
+      </if>
+      <if test="working != null" >
+        #{working,jdbcType=INTEGER},
+      </if>
+      <if test="planState != null" >
+        #{planState,jdbcType=INTEGER},
+      </if>
+      <if test="planSourceType != null" >
+        #{planSourceType,jdbcType=INTEGER},
+      </if>
+      <if test="createUid != null" >
+        #{createUid,jdbcType=VARCHAR},
+      </if>
+      <if test="createUname != null" >
+        #{createUname,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planClassify != null" >
+        #{planClassify,jdbcType=INTEGER},
+      </if>
+      <if test="lightRemind != null" >
+        #{lightRemind,jdbcType=INTEGER},
+      </if>
+      <if test="workMasterUid != null" >
+        #{workMasterUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workMasterUname != null" >
+        #{workMasterUname,jdbcType=VARCHAR},
+      </if>
+      <if test="workMemberUnames != null" >
+        #{workMemberUnames,jdbcType=VARCHAR},
+      </if>
+      <if test="realBeginDate != null" >
+        #{realBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realEndDate != null" >
+        #{realEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completionCondition != null" >
+        #{completionCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageLevel != null" >
+        #{voltageLevel,jdbcType=INTEGER},
+      </if>
+      <if test="workDay != null" >
+        #{workDay,jdbcType=INTEGER},
+      </if>
+      <if test="speciality != null" >
+        #{speciality,jdbcType=INTEGER},
+      </if>
+      <if test="workHour != null" >
+        #{workHour,jdbcType=INTEGER},
+      </if>
+      <if test="planBeginWeek != null" >
+        #{planBeginWeek,jdbcType=INTEGER},
+      </if>
+      <if test="isExteriorDept != null" >
+        #{isExteriorDept,jdbcType=INTEGER},
+      </if>
+      <if test="personnelCount != null" >
+        #{personnelCount,jdbcType=INTEGER},
+      </if>
+      <if test="workDeptOid != null" >
+        #{workDeptOid,jdbcType=VARCHAR},
+      </if>
+      <if test="workDeptOname != null" >
+        #{workDeptOname,jdbcType=VARCHAR},
+      </if>
+      <if test="isBequeathQuestion != null" >
+        #{isBequeathQuestion,jdbcType=INTEGER},
+      </if>
+      <if test="monitorOpinion != null" >
+        #{monitorOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="affirmUid != null" >
+        #{affirmUid,jdbcType=VARCHAR},
+      </if>
+      <if test="affirmUname != null" >
+        #{affirmUname,jdbcType=VARCHAR},
+      </if>
+      <if test="affirmDate != null" >
+        #{affirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="advertProceeding != null" >
+        #{advertProceeding,jdbcType=VARCHAR},
+      </if>
+      <if test="workSmallType != null" >
+        #{workSmallType,jdbcType=INTEGER},
+      </if>
+      <if test="executionBackFlag != null" >
+        #{executionBackFlag,jdbcType=INTEGER},
+      </if>
+      <if test="isDealDefect != null" >
+        #{isDealDefect,jdbcType=INTEGER},
+      </if>
+      <if test="currentExperimentDate != null" >
+        #{currentExperimentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="riskLevel != null" >
+        #{riskLevel,jdbcType=INTEGER},
+      </if>
+      <if test="riskValue != null" >
+        #{riskValue,jdbcType=DECIMAL},
+      </if>
+      <if test="patrolClassify != null" >
+        #{patrolClassify,jdbcType=INTEGER},
+      </if>
+      <if test="patrolObjectSelectType != null" >
+        #{patrolObjectSelectType,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchWorkUid != null" >
+        #{dispatchWorkUid,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchWorkUname != null" >
+        #{dispatchWorkUname,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadState != null" >
+        #{downloadState,jdbcType=INTEGER},
+      </if>
+      <if test="isSendNoteMaster != null" >
+        #{isSendNoteMaster,jdbcType=INTEGER},
+      </if>
+      <if test="isSendNoteMember != null" >
+        #{isSendNoteMember,jdbcType=INTEGER},
+      </if>
+      <if test="planRemark != null" >
+        #{planRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="powerGridFlag != null" >
+        #{powerGridFlag,jdbcType=INTEGER},
+      </if>
+      <if test="exteriorDeptName != null" >
+        #{exteriorDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="bequeathQuestion != null" >
+        #{bequeathQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="optimisticLockVersion != null" >
+        #{optimisticLockVersion,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataFrom != null" >
+        #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="bureauCode != null" >
+        #{bureauCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flowState != null" >
+        #{flowState,jdbcType=INTEGER},
+      </if>
+      <if test="processInsId != null" >
+        #{processInsId,jdbcType=VARCHAR},
+      </if>
+      <if test="isNeedOutageApply != null" >
+        #{isNeedOutageApply,jdbcType=INTEGER},
+      </if>
+      <if test="isAeronefPatrolCooperate != null" >
+        #{isAeronefPatrolCooperate,jdbcType=INTEGER},
+      </if>
+      <if test="notRelTaskform != null" >
+        #{notRelTaskform,jdbcType=INTEGER},
+      </if>
+      <if test="relTaskFormType != null" >
+        #{relTaskFormType,jdbcType=INTEGER},
+      </if>
+      <if test="isGriddingPatrol != null" >
+        #{isGriddingPatrol,jdbcType=INTEGER},
+      </if>
+      <if test="isUavPatrol != null" >
+        #{isUavPatrol,jdbcType=INTEGER},
+      </if>
+      <if test="implementMode != null" >
+        #{implementMode,jdbcType=INTEGER},
+      </if>
+      <if test="isCableChannelPatrol != null" >
+        #{isCableChannelPatrol,jdbcType=INTEGER},
+      </if>
+      <if test="patrolMode != null" >
+        #{patrolMode,jdbcType=INTEGER},
+      </if>
+      <if test="workSourceType != null" >
+        #{workSourceType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.core.model.PdPpInfoExample" resultType="java.lang.Integer" >
+    select count(*) from sp_pd_pp_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sp_pd_pp_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planCode != null" >
+        PLAN_CODE = #{record.planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workContent != null" >
+        WORK_CONTENT = #{record.workContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property != null" >
+        PROPERTY = #{record.property,jdbcType=INTEGER},
+      </if>
+      <if test="record.workType != null" >
+        WORK_TYPE = #{record.workType,jdbcType=INTEGER},
+      </if>
+      <if test="record.workTeamOid != null" >
+        WORK_TEAM_OID = #{record.workTeamOid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workTeamOcode != null" >
+        WORK_TEAM_OCODE = #{record.workTeamOcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workTeamOname != null" >
+        WORK_TEAM_ONAME = #{record.workTeamOname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planBeginDate != null" >
+        PLAN_BEGIN_DATE = #{record.planBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.planEndDate != null" >
+        PLAN_END_DATE = #{record.planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.workSiteNames != null" >
+        WORK_SITE_NAMES = #{record.workSiteNames,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planType != null" >
+        PLAN_TYPE = #{record.planType,jdbcType=INTEGER},
+      </if>
+      <if test="record.working != null" >
+        WORKING = #{record.working,jdbcType=INTEGER},
+      </if>
+      <if test="record.planState != null" >
+        PLAN_STATE = #{record.planState,jdbcType=INTEGER},
+      </if>
+      <if test="record.planSourceType != null" >
+        PLAN_SOURCE_TYPE = #{record.planSourceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUid != null" >
+        CREATE_UID = #{record.createUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUname != null" >
+        CREATE_UNAME = #{record.createUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.planClassify != null" >
+        PLAN_CLASSIFY = #{record.planClassify,jdbcType=INTEGER},
+      </if>
+      <if test="record.lightRemind != null" >
+        LIGHT_REMIND = #{record.lightRemind,jdbcType=INTEGER},
+      </if>
+      <if test="record.workMasterUid != null" >
+        WORK_MASTER_UID = #{record.workMasterUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workMasterUname != null" >
+        WORK_MASTER_UNAME = #{record.workMasterUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workMemberUnames != null" >
+        WORK_MEMBER_UNAMES = #{record.workMemberUnames,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realBeginDate != null" >
+        REAL_BEGIN_DATE = #{record.realBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.realEndDate != null" >
+        REAL_END_DATE = #{record.realEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.completionCondition != null" >
+        COMPLETION_CONDITION = #{record.completionCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voltageLevel != null" >
+        VOLTAGE_LEVEL = #{record.voltageLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.workDay != null" >
+        WORK_DAY = #{record.workDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.speciality != null" >
+        SPECIALITY = #{record.speciality,jdbcType=INTEGER},
+      </if>
+      <if test="record.workHour != null" >
+        WORK_HOUR = #{record.workHour,jdbcType=INTEGER},
+      </if>
+      <if test="record.planBeginWeek != null" >
+        PLAN_BEGIN_WEEK = #{record.planBeginWeek,jdbcType=INTEGER},
+      </if>
+      <if test="record.isExteriorDept != null" >
+        IS_EXTERIOR_DEPT = #{record.isExteriorDept,jdbcType=INTEGER},
+      </if>
+      <if test="record.personnelCount != null" >
+        PERSONNEL_COUNT = #{record.personnelCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.workDeptOid != null" >
+        WORK_DEPT_OID = #{record.workDeptOid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workDeptOname != null" >
+        WORK_DEPT_ONAME = #{record.workDeptOname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBequeathQuestion != null" >
+        IS_BEQUEATH_QUESTION = #{record.isBequeathQuestion,jdbcType=INTEGER},
+      </if>
+      <if test="record.monitorOpinion != null" >
+        MONITOR_OPINION = #{record.monitorOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.affirmUid != null" >
+        AFFIRM_UID = #{record.affirmUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.affirmUname != null" >
+        AFFIRM_UNAME = #{record.affirmUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.affirmDate != null" >
+        AFFIRM_DATE = #{record.affirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.advertProceeding != null" >
+        ADVERT_PROCEEDING = #{record.advertProceeding,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workSmallType != null" >
+        WORK_SMALL_TYPE = #{record.workSmallType,jdbcType=INTEGER},
+      </if>
+      <if test="record.executionBackFlag != null" >
+        EXECUTION_BACK_FLAG = #{record.executionBackFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDealDefect != null" >
+        IS_DEAL_DEFECT = #{record.isDealDefect,jdbcType=INTEGER},
+      </if>
+      <if test="record.currentExperimentDate != null" >
+        CURRENT_EXPERIMENT_DATE = #{record.currentExperimentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.riskLevel != null" >
+        RISK_LEVEL = #{record.riskLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.riskValue != null" >
+        RISK_VALUE = #{record.riskValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.patrolClassify != null" >
+        PATROL_CLASSIFY = #{record.patrolClassify,jdbcType=INTEGER},
+      </if>
+      <if test="record.patrolObjectSelectType != null" >
+        PATROL_OBJECT_SELECT_TYPE = #{record.patrolObjectSelectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.dispatchWorkUid != null" >
+        DISPATCH_WORK_UID = #{record.dispatchWorkUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dispatchWorkUname != null" >
+        DISPATCH_WORK_UNAME = #{record.dispatchWorkUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downloadState != null" >
+        DOWNLOAD_STATE = #{record.downloadState,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSendNoteMaster != null" >
+        IS_SEND_NOTE_MASTER = #{record.isSendNoteMaster,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSendNoteMember != null" >
+        IS_SEND_NOTE_MEMBER = #{record.isSendNoteMember,jdbcType=INTEGER},
+      </if>
+      <if test="record.planRemark != null" >
+        PLAN_REMARK = #{record.planRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerGridFlag != null" >
+        POWER_GRID_FLAG = #{record.powerGridFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.exteriorDeptName != null" >
+        EXTERIOR_DEPT_NAME = #{record.exteriorDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bequeathQuestion != null" >
+        BEQUEATH_QUESTION = #{record.bequeathQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optimisticLockVersion != null" >
+        OPTIMISTIC_LOCK_VERSION = #{record.optimisticLockVersion,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dataFrom != null" >
+        DATA_FROM = #{record.dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bureauCode != null" >
+        BUREAU_CODE = #{record.bureauCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceCode != null" >
+        PROVINCE_CODE = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowState != null" >
+        FLOW_STATE = #{record.flowState,jdbcType=INTEGER},
+      </if>
+      <if test="record.processInsId != null" >
+        PROCESS_INS_ID = #{record.processInsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isNeedOutageApply != null" >
+        IS_NEED_OUTAGE_APPLY = #{record.isNeedOutageApply,jdbcType=INTEGER},
+      </if>
+      <if test="record.isAeronefPatrolCooperate != null" >
+        IS_AERONEF_PATROL_COOPERATE = #{record.isAeronefPatrolCooperate,jdbcType=INTEGER},
+      </if>
+      <if test="record.notRelTaskform != null" >
+        NOT_REL_TASKFORM = #{record.notRelTaskform,jdbcType=INTEGER},
+      </if>
+      <if test="record.relTaskFormType != null" >
+        REL_TASK_FORM_TYPE = #{record.relTaskFormType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isGriddingPatrol != null" >
+        IS_GRIDDING_PATROL = #{record.isGriddingPatrol,jdbcType=INTEGER},
+      </if>
+      <if test="record.isUavPatrol != null" >
+        IS_UAV_PATROL = #{record.isUavPatrol,jdbcType=INTEGER},
+      </if>
+      <if test="record.implementMode != null" >
+        IMPLEMENT_MODE = #{record.implementMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCableChannelPatrol != null" >
+        IS_CABLE_CHANNEL_PATROL = #{record.isCableChannelPatrol,jdbcType=INTEGER},
+      </if>
+      <if test="record.patrolMode != null" >
+        PATROL_MODE = #{record.patrolMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.workSourceType != null" >
+        WORK_SOURCE_TYPE = #{record.workSourceType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sp_pd_pp_info
+    set ID = #{record.id,jdbcType=VARCHAR},
+      PLAN_CODE = #{record.planCode,jdbcType=VARCHAR},
+      WORK_CONTENT = #{record.workContent,jdbcType=VARCHAR},
+      PROPERTY = #{record.property,jdbcType=INTEGER},
+      WORK_TYPE = #{record.workType,jdbcType=INTEGER},
+      WORK_TEAM_OID = #{record.workTeamOid,jdbcType=VARCHAR},
+      WORK_TEAM_OCODE = #{record.workTeamOcode,jdbcType=VARCHAR},
+      WORK_TEAM_ONAME = #{record.workTeamOname,jdbcType=VARCHAR},
+      PLAN_BEGIN_DATE = #{record.planBeginDate,jdbcType=TIMESTAMP},
+      PLAN_END_DATE = #{record.planEndDate,jdbcType=TIMESTAMP},
+      WORK_SITE_NAMES = #{record.workSiteNames,jdbcType=VARCHAR},
+      PLAN_TYPE = #{record.planType,jdbcType=INTEGER},
+      WORKING = #{record.working,jdbcType=INTEGER},
+      PLAN_STATE = #{record.planState,jdbcType=INTEGER},
+      PLAN_SOURCE_TYPE = #{record.planSourceType,jdbcType=INTEGER},
+      CREATE_UID = #{record.createUid,jdbcType=VARCHAR},
+      CREATE_UNAME = #{record.createUname,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      PLAN_CLASSIFY = #{record.planClassify,jdbcType=INTEGER},
+      LIGHT_REMIND = #{record.lightRemind,jdbcType=INTEGER},
+      WORK_MASTER_UID = #{record.workMasterUid,jdbcType=VARCHAR},
+      WORK_MASTER_UNAME = #{record.workMasterUname,jdbcType=VARCHAR},
+      WORK_MEMBER_UNAMES = #{record.workMemberUnames,jdbcType=VARCHAR},
+      REAL_BEGIN_DATE = #{record.realBeginDate,jdbcType=TIMESTAMP},
+      REAL_END_DATE = #{record.realEndDate,jdbcType=TIMESTAMP},
+      COMPLETION_CONDITION = #{record.completionCondition,jdbcType=VARCHAR},
+      VOLTAGE_LEVEL = #{record.voltageLevel,jdbcType=INTEGER},
+      WORK_DAY = #{record.workDay,jdbcType=INTEGER},
+      SPECIALITY = #{record.speciality,jdbcType=INTEGER},
+      WORK_HOUR = #{record.workHour,jdbcType=INTEGER},
+      PLAN_BEGIN_WEEK = #{record.planBeginWeek,jdbcType=INTEGER},
+      IS_EXTERIOR_DEPT = #{record.isExteriorDept,jdbcType=INTEGER},
+      PERSONNEL_COUNT = #{record.personnelCount,jdbcType=INTEGER},
+      WORK_DEPT_OID = #{record.workDeptOid,jdbcType=VARCHAR},
+      WORK_DEPT_ONAME = #{record.workDeptOname,jdbcType=VARCHAR},
+      IS_BEQUEATH_QUESTION = #{record.isBequeathQuestion,jdbcType=INTEGER},
+      MONITOR_OPINION = #{record.monitorOpinion,jdbcType=VARCHAR},
+      AFFIRM_UID = #{record.affirmUid,jdbcType=VARCHAR},
+      AFFIRM_UNAME = #{record.affirmUname,jdbcType=VARCHAR},
+      AFFIRM_DATE = #{record.affirmDate,jdbcType=TIMESTAMP},
+      ADVERT_PROCEEDING = #{record.advertProceeding,jdbcType=VARCHAR},
+      WORK_SMALL_TYPE = #{record.workSmallType,jdbcType=INTEGER},
+      EXECUTION_BACK_FLAG = #{record.executionBackFlag,jdbcType=INTEGER},
+      IS_DEAL_DEFECT = #{record.isDealDefect,jdbcType=INTEGER},
+      CURRENT_EXPERIMENT_DATE = #{record.currentExperimentDate,jdbcType=TIMESTAMP},
+      RISK_LEVEL = #{record.riskLevel,jdbcType=INTEGER},
+      RISK_VALUE = #{record.riskValue,jdbcType=DECIMAL},
+      PATROL_CLASSIFY = #{record.patrolClassify,jdbcType=INTEGER},
+      PATROL_OBJECT_SELECT_TYPE = #{record.patrolObjectSelectType,jdbcType=INTEGER},
+      DISPATCH_WORK_UID = #{record.dispatchWorkUid,jdbcType=VARCHAR},
+      DISPATCH_WORK_UNAME = #{record.dispatchWorkUname,jdbcType=VARCHAR},
+      DOWNLOAD_STATE = #{record.downloadState,jdbcType=INTEGER},
+      IS_SEND_NOTE_MASTER = #{record.isSendNoteMaster,jdbcType=INTEGER},
+      IS_SEND_NOTE_MEMBER = #{record.isSendNoteMember,jdbcType=INTEGER},
+      PLAN_REMARK = #{record.planRemark,jdbcType=VARCHAR},
+      POWER_GRID_FLAG = #{record.powerGridFlag,jdbcType=INTEGER},
+      EXTERIOR_DEPT_NAME = #{record.exteriorDeptName,jdbcType=VARCHAR},
+      BEQUEATH_QUESTION = #{record.bequeathQuestion,jdbcType=VARCHAR},
+      OPTIMISTIC_LOCK_VERSION = #{record.optimisticLockVersion,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      DATA_FROM = #{record.dataFrom,jdbcType=VARCHAR},
+      BUREAU_CODE = #{record.bureauCode,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{record.provinceCode,jdbcType=VARCHAR},
+      FLOW_STATE = #{record.flowState,jdbcType=INTEGER},
+      PROCESS_INS_ID = #{record.processInsId,jdbcType=VARCHAR},
+      IS_NEED_OUTAGE_APPLY = #{record.isNeedOutageApply,jdbcType=INTEGER},
+      IS_AERONEF_PATROL_COOPERATE = #{record.isAeronefPatrolCooperate,jdbcType=INTEGER},
+      NOT_REL_TASKFORM = #{record.notRelTaskform,jdbcType=INTEGER},
+      REL_TASK_FORM_TYPE = #{record.relTaskFormType,jdbcType=INTEGER},
+      IS_GRIDDING_PATROL = #{record.isGriddingPatrol,jdbcType=INTEGER},
+      IS_UAV_PATROL = #{record.isUavPatrol,jdbcType=INTEGER},
+      IMPLEMENT_MODE = #{record.implementMode,jdbcType=INTEGER},
+      IS_CABLE_CHANNEL_PATROL = #{record.isCableChannelPatrol,jdbcType=INTEGER},
+      PATROL_MODE = #{record.patrolMode,jdbcType=INTEGER},
+      WORK_SOURCE_TYPE = #{record.workSourceType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.core.model.PdPpInfo" >
+    update sp_pd_pp_info
+    <set >
+      <if test="planCode != null" >
+        PLAN_CODE = #{planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="workContent != null" >
+        WORK_CONTENT = #{workContent,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null" >
+        PROPERTY = #{property,jdbcType=INTEGER},
+      </if>
+      <if test="workType != null" >
+        WORK_TYPE = #{workType,jdbcType=INTEGER},
+      </if>
+      <if test="workTeamOid != null" >
+        WORK_TEAM_OID = #{workTeamOid,jdbcType=VARCHAR},
+      </if>
+      <if test="workTeamOcode != null" >
+        WORK_TEAM_OCODE = #{workTeamOcode,jdbcType=VARCHAR},
+      </if>
+      <if test="workTeamOname != null" >
+        WORK_TEAM_ONAME = #{workTeamOname,jdbcType=VARCHAR},
+      </if>
+      <if test="planBeginDate != null" >
+        PLAN_BEGIN_DATE = #{planBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndDate != null" >
+        PLAN_END_DATE = #{planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workSiteNames != null" >
+        WORK_SITE_NAMES = #{workSiteNames,jdbcType=VARCHAR},
+      </if>
+      <if test="planType != null" >
+        PLAN_TYPE = #{planType,jdbcType=INTEGER},
+      </if>
+      <if test="working != null" >
+        WORKING = #{working,jdbcType=INTEGER},
+      </if>
+      <if test="planState != null" >
+        PLAN_STATE = #{planState,jdbcType=INTEGER},
+      </if>
+      <if test="planSourceType != null" >
+        PLAN_SOURCE_TYPE = #{planSourceType,jdbcType=INTEGER},
+      </if>
+      <if test="createUid != null" >
+        CREATE_UID = #{createUid,jdbcType=VARCHAR},
+      </if>
+      <if test="createUname != null" >
+        CREATE_UNAME = #{createUname,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planClassify != null" >
+        PLAN_CLASSIFY = #{planClassify,jdbcType=INTEGER},
+      </if>
+      <if test="lightRemind != null" >
+        LIGHT_REMIND = #{lightRemind,jdbcType=INTEGER},
+      </if>
+      <if test="workMasterUid != null" >
+        WORK_MASTER_UID = #{workMasterUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workMasterUname != null" >
+        WORK_MASTER_UNAME = #{workMasterUname,jdbcType=VARCHAR},
+      </if>
+      <if test="workMemberUnames != null" >
+        WORK_MEMBER_UNAMES = #{workMemberUnames,jdbcType=VARCHAR},
+      </if>
+      <if test="realBeginDate != null" >
+        REAL_BEGIN_DATE = #{realBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realEndDate != null" >
+        REAL_END_DATE = #{realEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completionCondition != null" >
+        COMPLETION_CONDITION = #{completionCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageLevel != null" >
+        VOLTAGE_LEVEL = #{voltageLevel,jdbcType=INTEGER},
+      </if>
+      <if test="workDay != null" >
+        WORK_DAY = #{workDay,jdbcType=INTEGER},
+      </if>
+      <if test="speciality != null" >
+        SPECIALITY = #{speciality,jdbcType=INTEGER},
+      </if>
+      <if test="workHour != null" >
+        WORK_HOUR = #{workHour,jdbcType=INTEGER},
+      </if>
+      <if test="planBeginWeek != null" >
+        PLAN_BEGIN_WEEK = #{planBeginWeek,jdbcType=INTEGER},
+      </if>
+      <if test="isExteriorDept != null" >
+        IS_EXTERIOR_DEPT = #{isExteriorDept,jdbcType=INTEGER},
+      </if>
+      <if test="personnelCount != null" >
+        PERSONNEL_COUNT = #{personnelCount,jdbcType=INTEGER},
+      </if>
+      <if test="workDeptOid != null" >
+        WORK_DEPT_OID = #{workDeptOid,jdbcType=VARCHAR},
+      </if>
+      <if test="workDeptOname != null" >
+        WORK_DEPT_ONAME = #{workDeptOname,jdbcType=VARCHAR},
+      </if>
+      <if test="isBequeathQuestion != null" >
+        IS_BEQUEATH_QUESTION = #{isBequeathQuestion,jdbcType=INTEGER},
+      </if>
+      <if test="monitorOpinion != null" >
+        MONITOR_OPINION = #{monitorOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="affirmUid != null" >
+        AFFIRM_UID = #{affirmUid,jdbcType=VARCHAR},
+      </if>
+      <if test="affirmUname != null" >
+        AFFIRM_UNAME = #{affirmUname,jdbcType=VARCHAR},
+      </if>
+      <if test="affirmDate != null" >
+        AFFIRM_DATE = #{affirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="advertProceeding != null" >
+        ADVERT_PROCEEDING = #{advertProceeding,jdbcType=VARCHAR},
+      </if>
+      <if test="workSmallType != null" >
+        WORK_SMALL_TYPE = #{workSmallType,jdbcType=INTEGER},
+      </if>
+      <if test="executionBackFlag != null" >
+        EXECUTION_BACK_FLAG = #{executionBackFlag,jdbcType=INTEGER},
+      </if>
+      <if test="isDealDefect != null" >
+        IS_DEAL_DEFECT = #{isDealDefect,jdbcType=INTEGER},
+      </if>
+      <if test="currentExperimentDate != null" >
+        CURRENT_EXPERIMENT_DATE = #{currentExperimentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="riskLevel != null" >
+        RISK_LEVEL = #{riskLevel,jdbcType=INTEGER},
+      </if>
+      <if test="riskValue != null" >
+        RISK_VALUE = #{riskValue,jdbcType=DECIMAL},
+      </if>
+      <if test="patrolClassify != null" >
+        PATROL_CLASSIFY = #{patrolClassify,jdbcType=INTEGER},
+      </if>
+      <if test="patrolObjectSelectType != null" >
+        PATROL_OBJECT_SELECT_TYPE = #{patrolObjectSelectType,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchWorkUid != null" >
+        DISPATCH_WORK_UID = #{dispatchWorkUid,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchWorkUname != null" >
+        DISPATCH_WORK_UNAME = #{dispatchWorkUname,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadState != null" >
+        DOWNLOAD_STATE = #{downloadState,jdbcType=INTEGER},
+      </if>
+      <if test="isSendNoteMaster != null" >
+        IS_SEND_NOTE_MASTER = #{isSendNoteMaster,jdbcType=INTEGER},
+      </if>
+      <if test="isSendNoteMember != null" >
+        IS_SEND_NOTE_MEMBER = #{isSendNoteMember,jdbcType=INTEGER},
+      </if>
+      <if test="planRemark != null" >
+        PLAN_REMARK = #{planRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="powerGridFlag != null" >
+        POWER_GRID_FLAG = #{powerGridFlag,jdbcType=INTEGER},
+      </if>
+      <if test="exteriorDeptName != null" >
+        EXTERIOR_DEPT_NAME = #{exteriorDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="bequeathQuestion != null" >
+        BEQUEATH_QUESTION = #{bequeathQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="optimisticLockVersion != null" >
+        OPTIMISTIC_LOCK_VERSION = #{optimisticLockVersion,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataFrom != null" >
+        DATA_FROM = #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="bureauCode != null" >
+        BUREAU_CODE = #{bureauCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flowState != null" >
+        FLOW_STATE = #{flowState,jdbcType=INTEGER},
+      </if>
+      <if test="processInsId != null" >
+        PROCESS_INS_ID = #{processInsId,jdbcType=VARCHAR},
+      </if>
+      <if test="isNeedOutageApply != null" >
+        IS_NEED_OUTAGE_APPLY = #{isNeedOutageApply,jdbcType=INTEGER},
+      </if>
+      <if test="isAeronefPatrolCooperate != null" >
+        IS_AERONEF_PATROL_COOPERATE = #{isAeronefPatrolCooperate,jdbcType=INTEGER},
+      </if>
+      <if test="notRelTaskform != null" >
+        NOT_REL_TASKFORM = #{notRelTaskform,jdbcType=INTEGER},
+      </if>
+      <if test="relTaskFormType != null" >
+        REL_TASK_FORM_TYPE = #{relTaskFormType,jdbcType=INTEGER},
+      </if>
+      <if test="isGriddingPatrol != null" >
+        IS_GRIDDING_PATROL = #{isGriddingPatrol,jdbcType=INTEGER},
+      </if>
+      <if test="isUavPatrol != null" >
+        IS_UAV_PATROL = #{isUavPatrol,jdbcType=INTEGER},
+      </if>
+      <if test="implementMode != null" >
+        IMPLEMENT_MODE = #{implementMode,jdbcType=INTEGER},
+      </if>
+      <if test="isCableChannelPatrol != null" >
+        IS_CABLE_CHANNEL_PATROL = #{isCableChannelPatrol,jdbcType=INTEGER},
+      </if>
+      <if test="patrolMode != null" >
+        PATROL_MODE = #{patrolMode,jdbcType=INTEGER},
+      </if>
+      <if test="workSourceType != null" >
+        WORK_SOURCE_TYPE = #{workSourceType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.core.model.PdPpInfo" >
+    update sp_pd_pp_info
+    set PLAN_CODE = #{planCode,jdbcType=VARCHAR},
+      WORK_CONTENT = #{workContent,jdbcType=VARCHAR},
+      PROPERTY = #{property,jdbcType=INTEGER},
+      WORK_TYPE = #{workType,jdbcType=INTEGER},
+      WORK_TEAM_OID = #{workTeamOid,jdbcType=VARCHAR},
+      WORK_TEAM_OCODE = #{workTeamOcode,jdbcType=VARCHAR},
+      WORK_TEAM_ONAME = #{workTeamOname,jdbcType=VARCHAR},
+      PLAN_BEGIN_DATE = #{planBeginDate,jdbcType=TIMESTAMP},
+      PLAN_END_DATE = #{planEndDate,jdbcType=TIMESTAMP},
+      WORK_SITE_NAMES = #{workSiteNames,jdbcType=VARCHAR},
+      PLAN_TYPE = #{planType,jdbcType=INTEGER},
+      WORKING = #{working,jdbcType=INTEGER},
+      PLAN_STATE = #{planState,jdbcType=INTEGER},
+      PLAN_SOURCE_TYPE = #{planSourceType,jdbcType=INTEGER},
+      CREATE_UID = #{createUid,jdbcType=VARCHAR},
+      CREATE_UNAME = #{createUname,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      PLAN_CLASSIFY = #{planClassify,jdbcType=INTEGER},
+      LIGHT_REMIND = #{lightRemind,jdbcType=INTEGER},
+      WORK_MASTER_UID = #{workMasterUid,jdbcType=VARCHAR},
+      WORK_MASTER_UNAME = #{workMasterUname,jdbcType=VARCHAR},
+      WORK_MEMBER_UNAMES = #{workMemberUnames,jdbcType=VARCHAR},
+      REAL_BEGIN_DATE = #{realBeginDate,jdbcType=TIMESTAMP},
+      REAL_END_DATE = #{realEndDate,jdbcType=TIMESTAMP},
+      COMPLETION_CONDITION = #{completionCondition,jdbcType=VARCHAR},
+      VOLTAGE_LEVEL = #{voltageLevel,jdbcType=INTEGER},
+      WORK_DAY = #{workDay,jdbcType=INTEGER},
+      SPECIALITY = #{speciality,jdbcType=INTEGER},
+      WORK_HOUR = #{workHour,jdbcType=INTEGER},
+      PLAN_BEGIN_WEEK = #{planBeginWeek,jdbcType=INTEGER},
+      IS_EXTERIOR_DEPT = #{isExteriorDept,jdbcType=INTEGER},
+      PERSONNEL_COUNT = #{personnelCount,jdbcType=INTEGER},
+      WORK_DEPT_OID = #{workDeptOid,jdbcType=VARCHAR},
+      WORK_DEPT_ONAME = #{workDeptOname,jdbcType=VARCHAR},
+      IS_BEQUEATH_QUESTION = #{isBequeathQuestion,jdbcType=INTEGER},
+      MONITOR_OPINION = #{monitorOpinion,jdbcType=VARCHAR},
+      AFFIRM_UID = #{affirmUid,jdbcType=VARCHAR},
+      AFFIRM_UNAME = #{affirmUname,jdbcType=VARCHAR},
+      AFFIRM_DATE = #{affirmDate,jdbcType=TIMESTAMP},
+      ADVERT_PROCEEDING = #{advertProceeding,jdbcType=VARCHAR},
+      WORK_SMALL_TYPE = #{workSmallType,jdbcType=INTEGER},
+      EXECUTION_BACK_FLAG = #{executionBackFlag,jdbcType=INTEGER},
+      IS_DEAL_DEFECT = #{isDealDefect,jdbcType=INTEGER},
+      CURRENT_EXPERIMENT_DATE = #{currentExperimentDate,jdbcType=TIMESTAMP},
+      RISK_LEVEL = #{riskLevel,jdbcType=INTEGER},
+      RISK_VALUE = #{riskValue,jdbcType=DECIMAL},
+      PATROL_CLASSIFY = #{patrolClassify,jdbcType=INTEGER},
+      PATROL_OBJECT_SELECT_TYPE = #{patrolObjectSelectType,jdbcType=INTEGER},
+      DISPATCH_WORK_UID = #{dispatchWorkUid,jdbcType=VARCHAR},
+      DISPATCH_WORK_UNAME = #{dispatchWorkUname,jdbcType=VARCHAR},
+      DOWNLOAD_STATE = #{downloadState,jdbcType=INTEGER},
+      IS_SEND_NOTE_MASTER = #{isSendNoteMaster,jdbcType=INTEGER},
+      IS_SEND_NOTE_MEMBER = #{isSendNoteMember,jdbcType=INTEGER},
+      PLAN_REMARK = #{planRemark,jdbcType=VARCHAR},
+      POWER_GRID_FLAG = #{powerGridFlag,jdbcType=INTEGER},
+      EXTERIOR_DEPT_NAME = #{exteriorDeptName,jdbcType=VARCHAR},
+      BEQUEATH_QUESTION = #{bequeathQuestion,jdbcType=VARCHAR},
+      OPTIMISTIC_LOCK_VERSION = #{optimisticLockVersion,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      DATA_FROM = #{dataFrom,jdbcType=VARCHAR},
+      BUREAU_CODE = #{bureauCode,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      FLOW_STATE = #{flowState,jdbcType=INTEGER},
+      PROCESS_INS_ID = #{processInsId,jdbcType=VARCHAR},
+      IS_NEED_OUTAGE_APPLY = #{isNeedOutageApply,jdbcType=INTEGER},
+      IS_AERONEF_PATROL_COOPERATE = #{isAeronefPatrolCooperate,jdbcType=INTEGER},
+      NOT_REL_TASKFORM = #{notRelTaskform,jdbcType=INTEGER},
+      REL_TASK_FORM_TYPE = #{relTaskFormType,jdbcType=INTEGER},
+      IS_GRIDDING_PATROL = #{isGriddingPatrol,jdbcType=INTEGER},
+      IS_UAV_PATROL = #{isUavPatrol,jdbcType=INTEGER},
+      IMPLEMENT_MODE = #{implementMode,jdbcType=INTEGER},
+      IS_CABLE_CHANNEL_PATROL = #{isCableChannelPatrol,jdbcType=INTEGER},
+      PATROL_MODE = #{patrolMode,jdbcType=INTEGER},
+      WORK_SOURCE_TYPE = #{workSourceType,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryPageList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select t.* from sp_pd_pp_info  t
+    where 1=1
+    <if test='workMasterUname != null and workMasterUname !=""' >
+      and t.WORK_MASTER_UNAME like #{workMasterUname,jdbcType=VARCHAR}
+    </if>
+    <if test='workContent != null and workContent !=""' >
+      and t.WORK_CONTENT like #{workContent,jdbcType=VARCHAR}
+    </if>
+    <if test='workSiteNames != null and workSiteNames !=""' >
+      and t.WORK_SITE_NAMES like #{workSiteNames,jdbcType=VARCHAR}
+    </if>
+    <if test="planCode != null and planCode != ''">
+      and t.PLAN_CODE = #{planCode,jdbcType=VARCHAR}
+    </if>
+    <if test="planState != null">
+      and t.PLAN_STATE = #{planState,jdbcType=INTEGER}
+    </if>
+    <if test="planBeginDate != null">
+      and t.PLAN_BEGIN_DATE &gt;= #{planBeginDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="planEndDate != null">
+      and t.PLAN_END_DATE &lt; #{planEndDate,jdbcType=TIMESTAMP}
+    </if>
+    order by t.UPDATE_TIME desc
+  </select>
+
+  <select id="getInfo" resultType="java.util.HashMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sp_pd_pp_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+</mapper>

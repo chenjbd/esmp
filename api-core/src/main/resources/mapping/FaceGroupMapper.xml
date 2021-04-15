@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.core.dao.FaceGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.core.model.FaceGroup" >
+    <id column="GROUP_ID" property="groupId" jdbcType="VARCHAR" />
+    <result column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
+    <result column="GROUP_DESC" property="groupDesc" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="CRT_OPR" property="crtOpr" jdbcType="VARCHAR" />
+    <result column="LST_TIME" property="lstTime" jdbcType="TIMESTAMP" />
+    <result column="LST_OPR" property="lstOpr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    GROUP_ID, GROUP_NAME, GROUP_DESC, CRT_TIME, CRT_OPR, LST_TIME, LST_OPR
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.core.model.FaceGroupExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from CC_CORE_FACE_GROUP
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from CC_CORE_FACE_GROUP
+    where GROUP_ID = #{groupId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from CC_CORE_FACE_GROUP
+    where GROUP_ID = #{groupId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.core.model.FaceGroupExample" >
+    delete from CC_CORE_FACE_GROUP
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.core.model.FaceGroup" >
+    insert into CC_CORE_FACE_GROUP (GROUP_ID, GROUP_NAME, GROUP_DESC, 
+      CRT_TIME, CRT_OPR, LST_TIME, 
+      LST_OPR)
+    values (#{groupId,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}, #{groupDesc,jdbcType=VARCHAR}, 
+      #{crtTime,jdbcType=TIMESTAMP}, #{crtOpr,jdbcType=VARCHAR}, #{lstTime,jdbcType=TIMESTAMP}, 
+      #{lstOpr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.core.model.FaceGroup" >
+    insert into CC_CORE_FACE_GROUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupId != null" >
+        GROUP_ID,
+      </if>
+      <if test="groupName != null" >
+        GROUP_NAME,
+      </if>
+      <if test="groupDesc != null" >
+        GROUP_DESC,
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME,
+      </if>
+      <if test="crtOpr != null" >
+        CRT_OPR,
+      </if>
+      <if test="lstTime != null" >
+        LST_TIME,
+      </if>
+      <if test="lstOpr != null" >
+        LST_OPR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupId != null" >
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupDesc != null" >
+        #{groupDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtOpr != null" >
+        #{crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="lstTime != null" >
+        #{lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstOpr != null" >
+        #{lstOpr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.core.model.FaceGroupExample" resultType="java.lang.Integer" >
+    select count(*) from CC_CORE_FACE_GROUP
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update CC_CORE_FACE_GROUP
+    <set >
+      <if test="record.groupId != null" >
+        GROUP_ID = #{record.groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupName != null" >
+        GROUP_NAME = #{record.groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupDesc != null" >
+        GROUP_DESC = #{record.groupDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crtTime != null" >
+        CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.crtOpr != null" >
+        CRT_OPR = #{record.crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lstTime != null" >
+        LST_TIME = #{record.lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lstOpr != null" >
+        LST_OPR = #{record.lstOpr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update CC_CORE_FACE_GROUP
+    set GROUP_ID = #{record.groupId,jdbcType=VARCHAR},
+      GROUP_NAME = #{record.groupName,jdbcType=VARCHAR},
+      GROUP_DESC = #{record.groupDesc,jdbcType=VARCHAR},
+      CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      CRT_OPR = #{record.crtOpr,jdbcType=VARCHAR},
+      LST_TIME = #{record.lstTime,jdbcType=TIMESTAMP},
+      LST_OPR = #{record.lstOpr,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.core.model.FaceGroup" >
+    update CC_CORE_FACE_GROUP
+    <set >
+      <if test="groupName != null" >
+        GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupDesc != null" >
+        GROUP_DESC = #{groupDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtOpr != null" >
+        CRT_OPR = #{crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="lstTime != null" >
+        LST_TIME = #{lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstOpr != null" >
+        LST_OPR = #{lstOpr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GROUP_ID = #{groupId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.core.model.FaceGroup" >
+    update CC_CORE_FACE_GROUP
+    set GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      GROUP_DESC = #{groupDesc,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      CRT_OPR = #{crtOpr,jdbcType=VARCHAR},
+      LST_TIME = #{lstTime,jdbcType=TIMESTAMP},
+      LST_OPR = #{lstOpr,jdbcType=VARCHAR}
+    where GROUP_ID = #{groupId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryPageList" resultType="java.util.HashMap" parameterType="map">
+    select
+    t.*
+    from CC_CORE_FACE_GROUP t
+    where 1=1
+    <if test="name != null and name != ''">
+      and t.GROUP_NAME like #{name}
+    </if>
+    order by t.CRT_TIME desc
+  </select>
+
+  <select id="findDic" resultType="java.util.HashMap" parameterType="map">
+    select
+    GROUP_ID "dicKey", GROUP_NAME "dicValue"
+    from CC_CORE_FACE_GROUP
+    where 1=1
+    order by CRT_TIME
+  </select>
+
+  <select id="selectGroupId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from CC_CORE_FACE_GROUP
+    where 1=1
+    order by CRT_TIME
+    limit 1
+  </select>
+</mapper>

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.core.dao.PersonalInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.core.model.PersonalInfo" >
+    <id column="U_ID" property="uId" jdbcType="VARCHAR" />
+    <result column="CUSTOMER_NAME" property="customerName" jdbcType="VARCHAR" />
+    <result column="PAPER_TYPE" property="paperType" jdbcType="VARCHAR" />
+    <result column="PAPER_NO" property="paperNo" jdbcType="VARCHAR" />
+    <result column="PHONE_NO" property="phoneNo" jdbcType="VARCHAR" />
+    <result column="GENDER" property="gender" jdbcType="CHAR" />
+    <result column="PERSON_TYPE" property="personType" jdbcType="CHAR" />
+    <result column="DEPT_NO" property="deptNo" jdbcType="VARCHAR" />
+    <result column="POS_NO" property="posNo" jdbcType="VARCHAR" />
+    <result column="CERT_NAME" property="certName" jdbcType="VARCHAR" />
+    <result column="JOB_ID" property="jobId" jdbcType="VARCHAR" />
+    <result column="NX_ID" property="nxId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="CRT_OPR" property="crtOpr" jdbcType="VARCHAR" />
+    <result column="LST_TIME" property="lstTime" jdbcType="TIMESTAMP" />
+    <result column="LST_OPR" property="lstOpr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    U_ID, CUSTOMER_NAME, PAPER_TYPE, PAPER_NO, PHONE_NO, GENDER, PERSON_TYPE, DEPT_NO, 
+    POS_NO, CERT_NAME, JOB_ID, NX_ID, STATUS, CRT_TIME, CRT_OPR, LST_TIME, LST_OPR
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.core.model.PersonalInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cc_core_personal_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cc_core_personal_info
+    where U_ID = #{uId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cc_core_personal_info
+    where U_ID = #{uId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.core.model.PersonalInfoExample" >
+    delete from cc_core_personal_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.core.model.PersonalInfo" >
+    insert into cc_core_personal_info (U_ID, CUSTOMER_NAME, PAPER_TYPE, 
+      PAPER_NO, PHONE_NO, GENDER, 
+      PERSON_TYPE, DEPT_NO, POS_NO, 
+      CERT_NAME, JOB_ID, NX_ID, 
+      STATUS, CRT_TIME, CRT_OPR, 
+      LST_TIME, LST_OPR)
+    values (#{uId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{paperType,jdbcType=VARCHAR}, 
+      #{paperNo,jdbcType=VARCHAR}, #{phoneNo,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
+      #{personType,jdbcType=CHAR}, #{deptNo,jdbcType=VARCHAR}, #{posNo,jdbcType=VARCHAR}, 
+      #{certName,jdbcType=VARCHAR}, #{jobId,jdbcType=VARCHAR}, #{nxId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, #{crtOpr,jdbcType=VARCHAR}, 
+      #{lstTime,jdbcType=TIMESTAMP}, #{lstOpr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.core.model.PersonalInfo" >
+    insert into cc_core_personal_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uId != null" >
+        U_ID,
+      </if>
+      <if test="customerName != null" >
+        CUSTOMER_NAME,
+      </if>
+      <if test="paperType != null" >
+        PAPER_TYPE,
+      </if>
+      <if test="paperNo != null" >
+        PAPER_NO,
+      </if>
+      <if test="phoneNo != null" >
+        PHONE_NO,
+      </if>
+      <if test="gender != null" >
+        GENDER,
+      </if>
+      <if test="personType != null" >
+        PERSON_TYPE,
+      </if>
+      <if test="deptNo != null" >
+        DEPT_NO,
+      </if>
+      <if test="posNo != null" >
+        POS_NO,
+      </if>
+      <if test="certName != null" >
+        CERT_NAME,
+      </if>
+      <if test="jobId != null" >
+        JOB_ID,
+      </if>
+      <if test="nxId != null" >
+        NX_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME,
+      </if>
+      <if test="crtOpr != null" >
+        CRT_OPR,
+      </if>
+      <if test="lstTime != null" >
+        LST_TIME,
+      </if>
+      <if test="lstOpr != null" >
+        LST_OPR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uId != null" >
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="paperType != null" >
+        #{paperType,jdbcType=VARCHAR},
+      </if>
+      <if test="paperNo != null" >
+        #{paperNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null" >
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="personType != null" >
+        #{personType,jdbcType=CHAR},
+      </if>
+      <if test="deptNo != null" >
+        #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="posNo != null" >
+        #{posNo,jdbcType=VARCHAR},
+      </if>
+      <if test="certName != null" >
+        #{certName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null" >
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="nxId != null" >
+        #{nxId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtOpr != null" >
+        #{crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="lstTime != null" >
+        #{lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstOpr != null" >
+        #{lstOpr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.core.model.PersonalInfoExample" resultType="java.lang.Integer" >
+    select count(*) from cc_core_personal_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cc_core_personal_info
+    <set >
+      <if test="record.uId != null" >
+        U_ID = #{record.uId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerName != null" >
+        CUSTOMER_NAME = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperType != null" >
+        PAPER_TYPE = #{record.paperType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperNo != null" >
+        PAPER_NO = #{record.paperNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneNo != null" >
+        PHONE_NO = #{record.phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        GENDER = #{record.gender,jdbcType=CHAR},
+      </if>
+      <if test="record.personType != null" >
+        PERSON_TYPE = #{record.personType,jdbcType=CHAR},
+      </if>
+      <if test="record.deptNo != null" >
+        DEPT_NO = #{record.deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.posNo != null" >
+        POS_NO = #{record.posNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certName != null" >
+        CERT_NAME = #{record.certName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobId != null" >
+        JOB_ID = #{record.jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nxId != null" >
+        NX_ID = #{record.nxId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crtTime != null" >
+        CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.crtOpr != null" >
+        CRT_OPR = #{record.crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lstTime != null" >
+        LST_TIME = #{record.lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lstOpr != null" >
+        LST_OPR = #{record.lstOpr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cc_core_personal_info
+    set U_ID = #{record.uId,jdbcType=VARCHAR},
+      CUSTOMER_NAME = #{record.customerName,jdbcType=VARCHAR},
+      PAPER_TYPE = #{record.paperType,jdbcType=VARCHAR},
+      PAPER_NO = #{record.paperNo,jdbcType=VARCHAR},
+      PHONE_NO = #{record.phoneNo,jdbcType=VARCHAR},
+      GENDER = #{record.gender,jdbcType=CHAR},
+      PERSON_TYPE = #{record.personType,jdbcType=CHAR},
+      DEPT_NO = #{record.deptNo,jdbcType=VARCHAR},
+      POS_NO = #{record.posNo,jdbcType=VARCHAR},
+      CERT_NAME = #{record.certName,jdbcType=VARCHAR},
+      JOB_ID = #{record.jobId,jdbcType=VARCHAR},
+      NX_ID = #{record.nxId,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      CRT_OPR = #{record.crtOpr,jdbcType=VARCHAR},
+      LST_TIME = #{record.lstTime,jdbcType=TIMESTAMP},
+      LST_OPR = #{record.lstOpr,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.core.model.PersonalInfo" >
+    update cc_core_personal_info
+    <set >
+      <if test="customerName != null" >
+        CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="paperType != null" >
+        PAPER_TYPE = #{paperType,jdbcType=VARCHAR},
+      </if>
+      <if test="paperNo != null" >
+        PAPER_NO = #{paperNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null" >
+        PHONE_NO = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        GENDER = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="personType != null" >
+        PERSON_TYPE = #{personType,jdbcType=CHAR},
+      </if>
+      <if test="deptNo != null" >
+        DEPT_NO = #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="posNo != null" >
+        POS_NO = #{posNo,jdbcType=VARCHAR},
+      </if>
+      <if test="certName != null" >
+        CERT_NAME = #{certName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null" >
+        JOB_ID = #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="nxId != null" >
+        NX_ID = #{nxId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtOpr != null" >
+        CRT_OPR = #{crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="lstTime != null" >
+        LST_TIME = #{lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstOpr != null" >
+        LST_OPR = #{lstOpr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where U_ID = #{uId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.core.model.PersonalInfo" >
+    update cc_core_personal_info
+    set CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      PAPER_TYPE = #{paperType,jdbcType=VARCHAR},
+      PAPER_NO = #{paperNo,jdbcType=VARCHAR},
+      PHONE_NO = #{phoneNo,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=CHAR},
+      PERSON_TYPE = #{personType,jdbcType=CHAR},
+      DEPT_NO = #{deptNo,jdbcType=VARCHAR},
+      POS_NO = #{posNo,jdbcType=VARCHAR},
+      CERT_NAME = #{certName,jdbcType=VARCHAR},
+      JOB_ID = #{jobId,jdbcType=VARCHAR},
+      NX_ID = #{nxId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      CRT_OPR = #{crtOpr,jdbcType=VARCHAR},
+      LST_TIME = #{lstTime,jdbcType=TIMESTAMP},
+      LST_OPR = #{lstOpr,jdbcType=VARCHAR}
+    where U_ID = #{uId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryPageList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select * from CC_CORE_PERSONAL_INFO  t
+    where 1=1
+    <if test='customerName != null and customerName != ""'>
+      and t.CUSTOMER_NAME like #{customerName,jdbcType=VARCHAR}
+    </if>
+    <if test="paperNo != null and paperNo != ''">
+      and t.PAPER_NO = #{paperNo,jdbcType=VARCHAR}
+    </if>
+    order by t.CRT_TIME desc
+  </select>
+
+  <select id="getInfo" resultType="java.util.HashMap" parameterType="java.lang.String" >
+    select
+    t.U_ID, t.CUSTOMER_NAME, t.PAPER_TYPE, t.PAPER_NO, t.PHONE_NO, t.GENDER, t.PERSON_TYPE, t.DEPT_NO, t.POS_NO, t.CERT_NAME, t.JOB_ID,
+    t.NX_ID, t.STATUS,
+    t1.NAME_FULL_PATH DEPT_NAME_FULL,
+    t2.NAME_FULL_PATH POS_NAME_FULL
+    from CC_CORE_PERSONAL_INFO t
+    left join TOP_ORGANIZATION t1 on t.DEPT_NO = t1.ORG_ID
+    left join cc_core_position t2 on t.POS_NO = t2.POS_NO
+    where t.U_ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getWgPersonInfo" resultType="java.util.HashMap" parameterType="java.lang.String" >
+    select
+    t.U_ID, t.CUSTOMER_NAME, t.PAPER_NO, t.PHONE_NO MOBILE, t.GENDER, t.PERSON_TYPE, t.DEPT_NO,
+    t1.NAME_FULL_PATH DEPT_NAME_FULL
+    from CC_CORE_PERSONAL_INFO t
+    left join TOP_ORGANIZATION t1 on t.DEPT_NO = t1.ORG_ID
+    where 1=1
+    and t.PAPER_NO = #{paperNo,jdbcType=VARCHAR}
+    limit 1
+  </select>
+
+</mapper>

@@ -1,0 +1,1272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.core.dao.PdWticketBaseMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.core.model.PdWticketBase" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TICKET_TYPE" property="ticketType" jdbcType="INTEGER" />
+    <result column="WORK_STATE" property="workState" jdbcType="INTEGER" />
+    <result column="WORK_PRINCIPAL_UID" property="workPrincipalUid" jdbcType="VARCHAR" />
+    <result column="TICKET_RECEIVE_UID" property="ticketReceiveUid" jdbcType="VARCHAR" />
+    <result column="TICKET_SIGN_UID" property="ticketSignUid" jdbcType="VARCHAR" />
+    <result column="WORK_PERMISSION_UID" property="workPermissionUid" jdbcType="VARCHAR" />
+    <result column="WORK_END_PERMISSION_UID" property="workEndPermissionUid" jdbcType="VARCHAR" />
+    <result column="WATCH_UID" property="watchUid" jdbcType="VARCHAR" />
+    <result column="TICKET_END_WATCH_UID" property="ticketEndWatchUid" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_OID" property="departmentOid" jdbcType="VARCHAR" />
+    <result column="PLAN_START_TIME" property="planStartTime" jdbcType="TIMESTAMP" />
+    <result column="PLAN_END_TIME" property="planEndTime" jdbcType="TIMESTAMP" />
+    <result column="RECEIVE_TIME" property="receiveTime" jdbcType="TIMESTAMP" />
+    <result column="PERMISSION_TIME" property="permissionTime" jdbcType="TIMESTAMP" />
+    <result column="WORK_END_TIME" property="workEndTime" jdbcType="TIMESTAMP" />
+    <result column="TICKET_END_TIME" property="ticketEndTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="FLOW_STATE" property="flowState" jdbcType="INTEGER" />
+    <result column="WORK_MEMBER_COUNT" property="workMemberCount" jdbcType="INTEGER" />
+    <result column="WHETHER_OUTER_DEPT" property="whetherOuterDept" jdbcType="INTEGER" />
+    <result column="IS_COMMUNICATION_TICKET" property="isCommunicationTicket" jdbcType="INTEGER" />
+    <result column="SECONDBILL_COUNT" property="secondbillCount" jdbcType="INTEGER" />
+    <result column="IS_EXIT_SWITCH" property="isExitSwitch" jdbcType="INTEGER" />
+    <result column="WHETHER_SECONDBILL" property="whetherSecondbill" jdbcType="INTEGER" />
+    <result column="WHETHER_QUALIFIED" property="whetherQualified" jdbcType="INTEGER" />
+    <result column="WHETHER_NOMATIVE" property="whetherNomative" jdbcType="INTEGER" />
+    <result column="QUALIFIED_STATE" property="qualifiedState" jdbcType="INTEGER" />
+    <result column="WHETHER_GUARDIAN_SIGN" property="whetherGuardianSign" jdbcType="INTEGER" />
+    <result column="GUARDIAN_UID" property="guardianUid" jdbcType="VARCHAR" />
+    <result column="WORK_PRINCIPAL_TEL" property="workPrincipalTel" jdbcType="VARCHAR" />
+    <result column="TICKET_NO" property="ticketNo" jdbcType="VARCHAR" />
+    <result column="CREATE_OID" property="createOid" jdbcType="VARCHAR" />
+    <result column="CREATE_UID" property="createUid" jdbcType="VARCHAR" />
+    <result column="PROCESS_INS_ID" property="processInsId" jdbcType="VARCHAR" />
+    <result column="FUNCTION_LOCATION_ID" property="functionLocationId" jdbcType="VARCHAR" />
+    <result column="FUNCTION_LOCATION_NAME" property="functionLocationName" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_ONAME" property="departmentOname" jdbcType="VARCHAR" />
+    <result column="OPTIMISTIC_LOCK_VERSION" property="optimisticLockVersion" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="DATA_FROM" property="dataFrom" jdbcType="VARCHAR" />
+    <result column="BUREAU_CODE" property="bureauCode" jdbcType="VARCHAR" />
+    <result column="PROVINCE_CODE" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="TICKET_COUNTER_SIGN_UID" property="ticketCounterSignUid" jdbcType="VARCHAR" />
+    <result column="WORK_MEMBER_UID" property="workMemberUid" jdbcType="VARCHAR" />
+    <result column="WORK_MEMBER_UNAME" property="workMemberUname" jdbcType="VARCHAR" />
+    <result column="WORK_TASK" property="workTask" jdbcType="VARCHAR" />
+    <result column="WORK_PLACE" property="workPlace" jdbcType="VARCHAR" />
+    <result column="POWER_GRID_FLAG" property="powerGridFlag" jdbcType="INTEGER" />
+    <result column="TICKET_SIGN_TIME" property="ticketSignTime" jdbcType="TIMESTAMP" />
+    <result column="TICKET_COUNTER_SIGN_TIME" property="ticketCounterSignTime" jdbcType="TIMESTAMP" />
+    <result column="FUNCTION_NAME" property="functionName" jdbcType="VARCHAR" />
+    <result column="PERMISSION_FLAG" property="permissionFlag" jdbcType="INTEGER" />
+    <result column="MAJOR" property="major" jdbcType="VARCHAR" />
+    <result column="OUT_OR_IN" property="outOrIn" jdbcType="INTEGER" />
+    <result column="WORK_PRINCIPAL_UNAME" property="workPrincipalUname" jdbcType="VARCHAR" />
+    <result column="TICKET_SIGN_UNAME" property="ticketSignUname" jdbcType="VARCHAR" />
+    <result column="WATCH_UNAME" property="watchUname" jdbcType="VARCHAR" />
+    <result column="WORK_PERMISSION_UNAME" property="workPermissionUname" jdbcType="VARCHAR" />
+    <result column="WORK_END_PERMISSION_UNAME" property="workEndPermissionUname" jdbcType="VARCHAR" />
+    <result column="TICKET_COUNTER_SIGN_UNAME" property="ticketCounterSignUname" jdbcType="VARCHAR" />
+    <result column="TICKET_RECEIVE_UNAME" property="ticketReceiveUname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TICKET_TYPE, WORK_STATE, WORK_PRINCIPAL_UID, TICKET_RECEIVE_UID, TICKET_SIGN_UID, 
+    WORK_PERMISSION_UID, WORK_END_PERMISSION_UID, WATCH_UID, TICKET_END_WATCH_UID, DEPARTMENT_OID, 
+    PLAN_START_TIME, PLAN_END_TIME, RECEIVE_TIME, PERMISSION_TIME, WORK_END_TIME, TICKET_END_TIME, 
+    CREATE_TIME, FLOW_STATE, WORK_MEMBER_COUNT, WHETHER_OUTER_DEPT, IS_COMMUNICATION_TICKET, 
+    SECONDBILL_COUNT, IS_EXIT_SWITCH, WHETHER_SECONDBILL, WHETHER_QUALIFIED, WHETHER_NOMATIVE, 
+    QUALIFIED_STATE, WHETHER_GUARDIAN_SIGN, GUARDIAN_UID, WORK_PRINCIPAL_TEL, TICKET_NO, 
+    CREATE_OID, CREATE_UID, PROCESS_INS_ID, FUNCTION_LOCATION_ID, FUNCTION_LOCATION_NAME, 
+    DEPARTMENT_ONAME, OPTIMISTIC_LOCK_VERSION, UPDATE_TIME, DATA_FROM, BUREAU_CODE, PROVINCE_CODE, 
+    TICKET_COUNTER_SIGN_UID, WORK_MEMBER_UID, WORK_MEMBER_UNAME, WORK_TASK, WORK_PLACE, 
+    POWER_GRID_FLAG, TICKET_SIGN_TIME, TICKET_COUNTER_SIGN_TIME, FUNCTION_NAME, PERMISSION_FLAG, 
+    MAJOR, OUT_OR_IN, WORK_PRINCIPAL_UNAME, TICKET_SIGN_UNAME, WATCH_UNAME, WORK_PERMISSION_UNAME, 
+    WORK_END_PERMISSION_UNAME, TICKET_COUNTER_SIGN_UNAME, TICKET_RECEIVE_UNAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.core.model.PdWticketBaseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sp_pd_wticket_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sp_pd_wticket_base
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sp_pd_wticket_base
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.core.model.PdWticketBaseExample" >
+    delete from sp_pd_wticket_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.core.model.PdWticketBase" >
+    insert into sp_pd_wticket_base (ID, TICKET_TYPE, WORK_STATE, 
+      WORK_PRINCIPAL_UID, TICKET_RECEIVE_UID, TICKET_SIGN_UID, 
+      WORK_PERMISSION_UID, WORK_END_PERMISSION_UID, 
+      WATCH_UID, TICKET_END_WATCH_UID, DEPARTMENT_OID, 
+      PLAN_START_TIME, PLAN_END_TIME, RECEIVE_TIME, 
+      PERMISSION_TIME, WORK_END_TIME, TICKET_END_TIME, 
+      CREATE_TIME, FLOW_STATE, WORK_MEMBER_COUNT, 
+      WHETHER_OUTER_DEPT, IS_COMMUNICATION_TICKET, 
+      SECONDBILL_COUNT, IS_EXIT_SWITCH, WHETHER_SECONDBILL, 
+      WHETHER_QUALIFIED, WHETHER_NOMATIVE, QUALIFIED_STATE, 
+      WHETHER_GUARDIAN_SIGN, GUARDIAN_UID, WORK_PRINCIPAL_TEL, 
+      TICKET_NO, CREATE_OID, CREATE_UID, 
+      PROCESS_INS_ID, FUNCTION_LOCATION_ID, FUNCTION_LOCATION_NAME, 
+      DEPARTMENT_ONAME, OPTIMISTIC_LOCK_VERSION, 
+      UPDATE_TIME, DATA_FROM, BUREAU_CODE, 
+      PROVINCE_CODE, TICKET_COUNTER_SIGN_UID, WORK_MEMBER_UID, 
+      WORK_MEMBER_UNAME, WORK_TASK, WORK_PLACE, 
+      POWER_GRID_FLAG, TICKET_SIGN_TIME, TICKET_COUNTER_SIGN_TIME, 
+      FUNCTION_NAME, PERMISSION_FLAG, MAJOR, 
+      OUT_OR_IN, WORK_PRINCIPAL_UNAME, TICKET_SIGN_UNAME, 
+      WATCH_UNAME, WORK_PERMISSION_UNAME, WORK_END_PERMISSION_UNAME, 
+      TICKET_COUNTER_SIGN_UNAME, TICKET_RECEIVE_UNAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{ticketType,jdbcType=INTEGER}, #{workState,jdbcType=INTEGER}, 
+      #{workPrincipalUid,jdbcType=VARCHAR}, #{ticketReceiveUid,jdbcType=VARCHAR}, #{ticketSignUid,jdbcType=VARCHAR}, 
+      #{workPermissionUid,jdbcType=VARCHAR}, #{workEndPermissionUid,jdbcType=VARCHAR}, 
+      #{watchUid,jdbcType=VARCHAR}, #{ticketEndWatchUid,jdbcType=VARCHAR}, #{departmentOid,jdbcType=VARCHAR}, 
+      #{planStartTime,jdbcType=TIMESTAMP}, #{planEndTime,jdbcType=TIMESTAMP}, #{receiveTime,jdbcType=TIMESTAMP}, 
+      #{permissionTime,jdbcType=TIMESTAMP}, #{workEndTime,jdbcType=TIMESTAMP}, #{ticketEndTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{flowState,jdbcType=INTEGER}, #{workMemberCount,jdbcType=INTEGER}, 
+      #{whetherOuterDept,jdbcType=INTEGER}, #{isCommunicationTicket,jdbcType=INTEGER}, 
+      #{secondbillCount,jdbcType=INTEGER}, #{isExitSwitch,jdbcType=INTEGER}, #{whetherSecondbill,jdbcType=INTEGER}, 
+      #{whetherQualified,jdbcType=INTEGER}, #{whetherNomative,jdbcType=INTEGER}, #{qualifiedState,jdbcType=INTEGER}, 
+      #{whetherGuardianSign,jdbcType=INTEGER}, #{guardianUid,jdbcType=VARCHAR}, #{workPrincipalTel,jdbcType=VARCHAR}, 
+      #{ticketNo,jdbcType=VARCHAR}, #{createOid,jdbcType=VARCHAR}, #{createUid,jdbcType=VARCHAR}, 
+      #{processInsId,jdbcType=VARCHAR}, #{functionLocationId,jdbcType=VARCHAR}, #{functionLocationName,jdbcType=VARCHAR}, 
+      #{departmentOname,jdbcType=VARCHAR}, #{optimisticLockVersion,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{dataFrom,jdbcType=VARCHAR}, #{bureauCode,jdbcType=VARCHAR}, 
+      #{provinceCode,jdbcType=VARCHAR}, #{ticketCounterSignUid,jdbcType=VARCHAR}, #{workMemberUid,jdbcType=VARCHAR}, 
+      #{workMemberUname,jdbcType=VARCHAR}, #{workTask,jdbcType=VARCHAR}, #{workPlace,jdbcType=VARCHAR}, 
+      #{powerGridFlag,jdbcType=INTEGER}, #{ticketSignTime,jdbcType=TIMESTAMP}, #{ticketCounterSignTime,jdbcType=TIMESTAMP}, 
+      #{functionName,jdbcType=VARCHAR}, #{permissionFlag,jdbcType=INTEGER}, #{major,jdbcType=VARCHAR}, 
+      #{outOrIn,jdbcType=INTEGER}, #{workPrincipalUname,jdbcType=VARCHAR}, #{ticketSignUname,jdbcType=VARCHAR}, 
+      #{watchUname,jdbcType=VARCHAR}, #{workPermissionUname,jdbcType=VARCHAR}, #{workEndPermissionUname,jdbcType=VARCHAR}, 
+      #{ticketCounterSignUname,jdbcType=VARCHAR}, #{ticketReceiveUname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.core.model.PdWticketBase" >
+    insert into sp_pd_wticket_base
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ticketType != null" >
+        TICKET_TYPE,
+      </if>
+      <if test="workState != null" >
+        WORK_STATE,
+      </if>
+      <if test="workPrincipalUid != null" >
+        WORK_PRINCIPAL_UID,
+      </if>
+      <if test="ticketReceiveUid != null" >
+        TICKET_RECEIVE_UID,
+      </if>
+      <if test="ticketSignUid != null" >
+        TICKET_SIGN_UID,
+      </if>
+      <if test="workPermissionUid != null" >
+        WORK_PERMISSION_UID,
+      </if>
+      <if test="workEndPermissionUid != null" >
+        WORK_END_PERMISSION_UID,
+      </if>
+      <if test="watchUid != null" >
+        WATCH_UID,
+      </if>
+      <if test="ticketEndWatchUid != null" >
+        TICKET_END_WATCH_UID,
+      </if>
+      <if test="departmentOid != null" >
+        DEPARTMENT_OID,
+      </if>
+      <if test="planStartTime != null" >
+        PLAN_START_TIME,
+      </if>
+      <if test="planEndTime != null" >
+        PLAN_END_TIME,
+      </if>
+      <if test="receiveTime != null" >
+        RECEIVE_TIME,
+      </if>
+      <if test="permissionTime != null" >
+        PERMISSION_TIME,
+      </if>
+      <if test="workEndTime != null" >
+        WORK_END_TIME,
+      </if>
+      <if test="ticketEndTime != null" >
+        TICKET_END_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="flowState != null" >
+        FLOW_STATE,
+      </if>
+      <if test="workMemberCount != null" >
+        WORK_MEMBER_COUNT,
+      </if>
+      <if test="whetherOuterDept != null" >
+        WHETHER_OUTER_DEPT,
+      </if>
+      <if test="isCommunicationTicket != null" >
+        IS_COMMUNICATION_TICKET,
+      </if>
+      <if test="secondbillCount != null" >
+        SECONDBILL_COUNT,
+      </if>
+      <if test="isExitSwitch != null" >
+        IS_EXIT_SWITCH,
+      </if>
+      <if test="whetherSecondbill != null" >
+        WHETHER_SECONDBILL,
+      </if>
+      <if test="whetherQualified != null" >
+        WHETHER_QUALIFIED,
+      </if>
+      <if test="whetherNomative != null" >
+        WHETHER_NOMATIVE,
+      </if>
+      <if test="qualifiedState != null" >
+        QUALIFIED_STATE,
+      </if>
+      <if test="whetherGuardianSign != null" >
+        WHETHER_GUARDIAN_SIGN,
+      </if>
+      <if test="guardianUid != null" >
+        GUARDIAN_UID,
+      </if>
+      <if test="workPrincipalTel != null" >
+        WORK_PRINCIPAL_TEL,
+      </if>
+      <if test="ticketNo != null" >
+        TICKET_NO,
+      </if>
+      <if test="createOid != null" >
+        CREATE_OID,
+      </if>
+      <if test="createUid != null" >
+        CREATE_UID,
+      </if>
+      <if test="processInsId != null" >
+        PROCESS_INS_ID,
+      </if>
+      <if test="functionLocationId != null" >
+        FUNCTION_LOCATION_ID,
+      </if>
+      <if test="functionLocationName != null" >
+        FUNCTION_LOCATION_NAME,
+      </if>
+      <if test="departmentOname != null" >
+        DEPARTMENT_ONAME,
+      </if>
+      <if test="optimisticLockVersion != null" >
+        OPTIMISTIC_LOCK_VERSION,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="dataFrom != null" >
+        DATA_FROM,
+      </if>
+      <if test="bureauCode != null" >
+        BUREAU_CODE,
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE,
+      </if>
+      <if test="ticketCounterSignUid != null" >
+        TICKET_COUNTER_SIGN_UID,
+      </if>
+      <if test="workMemberUid != null" >
+        WORK_MEMBER_UID,
+      </if>
+      <if test="workMemberUname != null" >
+        WORK_MEMBER_UNAME,
+      </if>
+      <if test="workTask != null" >
+        WORK_TASK,
+      </if>
+      <if test="workPlace != null" >
+        WORK_PLACE,
+      </if>
+      <if test="powerGridFlag != null" >
+        POWER_GRID_FLAG,
+      </if>
+      <if test="ticketSignTime != null" >
+        TICKET_SIGN_TIME,
+      </if>
+      <if test="ticketCounterSignTime != null" >
+        TICKET_COUNTER_SIGN_TIME,
+      </if>
+      <if test="functionName != null" >
+        FUNCTION_NAME,
+      </if>
+      <if test="permissionFlag != null" >
+        PERMISSION_FLAG,
+      </if>
+      <if test="major != null" >
+        MAJOR,
+      </if>
+      <if test="outOrIn != null" >
+        OUT_OR_IN,
+      </if>
+      <if test="workPrincipalUname != null" >
+        WORK_PRINCIPAL_UNAME,
+      </if>
+      <if test="ticketSignUname != null" >
+        TICKET_SIGN_UNAME,
+      </if>
+      <if test="watchUname != null" >
+        WATCH_UNAME,
+      </if>
+      <if test="workPermissionUname != null" >
+        WORK_PERMISSION_UNAME,
+      </if>
+      <if test="workEndPermissionUname != null" >
+        WORK_END_PERMISSION_UNAME,
+      </if>
+      <if test="ticketCounterSignUname != null" >
+        TICKET_COUNTER_SIGN_UNAME,
+      </if>
+      <if test="ticketReceiveUname != null" >
+        TICKET_RECEIVE_UNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketType != null" >
+        #{ticketType,jdbcType=INTEGER},
+      </if>
+      <if test="workState != null" >
+        #{workState,jdbcType=INTEGER},
+      </if>
+      <if test="workPrincipalUid != null" >
+        #{workPrincipalUid,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketReceiveUid != null" >
+        #{ticketReceiveUid,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketSignUid != null" >
+        #{ticketSignUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workPermissionUid != null" >
+        #{workPermissionUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workEndPermissionUid != null" >
+        #{workEndPermissionUid,jdbcType=VARCHAR},
+      </if>
+      <if test="watchUid != null" >
+        #{watchUid,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketEndWatchUid != null" >
+        #{ticketEndWatchUid,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentOid != null" >
+        #{departmentOid,jdbcType=VARCHAR},
+      </if>
+      <if test="planStartTime != null" >
+        #{planStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndTime != null" >
+        #{planEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null" >
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="permissionTime != null" >
+        #{permissionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workEndTime != null" >
+        #{workEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketEndTime != null" >
+        #{ticketEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flowState != null" >
+        #{flowState,jdbcType=INTEGER},
+      </if>
+      <if test="workMemberCount != null" >
+        #{workMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="whetherOuterDept != null" >
+        #{whetherOuterDept,jdbcType=INTEGER},
+      </if>
+      <if test="isCommunicationTicket != null" >
+        #{isCommunicationTicket,jdbcType=INTEGER},
+      </if>
+      <if test="secondbillCount != null" >
+        #{secondbillCount,jdbcType=INTEGER},
+      </if>
+      <if test="isExitSwitch != null" >
+        #{isExitSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="whetherSecondbill != null" >
+        #{whetherSecondbill,jdbcType=INTEGER},
+      </if>
+      <if test="whetherQualified != null" >
+        #{whetherQualified,jdbcType=INTEGER},
+      </if>
+      <if test="whetherNomative != null" >
+        #{whetherNomative,jdbcType=INTEGER},
+      </if>
+      <if test="qualifiedState != null" >
+        #{qualifiedState,jdbcType=INTEGER},
+      </if>
+      <if test="whetherGuardianSign != null" >
+        #{whetherGuardianSign,jdbcType=INTEGER},
+      </if>
+      <if test="guardianUid != null" >
+        #{guardianUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workPrincipalTel != null" >
+        #{workPrincipalTel,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketNo != null" >
+        #{ticketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createOid != null" >
+        #{createOid,jdbcType=VARCHAR},
+      </if>
+      <if test="createUid != null" >
+        #{createUid,jdbcType=VARCHAR},
+      </if>
+      <if test="processInsId != null" >
+        #{processInsId,jdbcType=VARCHAR},
+      </if>
+      <if test="functionLocationId != null" >
+        #{functionLocationId,jdbcType=VARCHAR},
+      </if>
+      <if test="functionLocationName != null" >
+        #{functionLocationName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentOname != null" >
+        #{departmentOname,jdbcType=VARCHAR},
+      </if>
+      <if test="optimisticLockVersion != null" >
+        #{optimisticLockVersion,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataFrom != null" >
+        #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="bureauCode != null" >
+        #{bureauCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCounterSignUid != null" >
+        #{ticketCounterSignUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workMemberUid != null" >
+        #{workMemberUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workMemberUname != null" >
+        #{workMemberUname,jdbcType=VARCHAR},
+      </if>
+      <if test="workTask != null" >
+        #{workTask,jdbcType=VARCHAR},
+      </if>
+      <if test="workPlace != null" >
+        #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="powerGridFlag != null" >
+        #{powerGridFlag,jdbcType=INTEGER},
+      </if>
+      <if test="ticketSignTime != null" >
+        #{ticketSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketCounterSignTime != null" >
+        #{ticketCounterSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="functionName != null" >
+        #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionFlag != null" >
+        #{permissionFlag,jdbcType=INTEGER},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="outOrIn != null" >
+        #{outOrIn,jdbcType=INTEGER},
+      </if>
+      <if test="workPrincipalUname != null" >
+        #{workPrincipalUname,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketSignUname != null" >
+        #{ticketSignUname,jdbcType=VARCHAR},
+      </if>
+      <if test="watchUname != null" >
+        #{watchUname,jdbcType=VARCHAR},
+      </if>
+      <if test="workPermissionUname != null" >
+        #{workPermissionUname,jdbcType=VARCHAR},
+      </if>
+      <if test="workEndPermissionUname != null" >
+        #{workEndPermissionUname,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCounterSignUname != null" >
+        #{ticketCounterSignUname,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketReceiveUname != null" >
+        #{ticketReceiveUname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.core.model.PdWticketBaseExample" resultType="java.lang.Integer" >
+    select count(*) from sp_pd_wticket_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sp_pd_wticket_base
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketType != null" >
+        TICKET_TYPE = #{record.ticketType,jdbcType=INTEGER},
+      </if>
+      <if test="record.workState != null" >
+        WORK_STATE = #{record.workState,jdbcType=INTEGER},
+      </if>
+      <if test="record.workPrincipalUid != null" >
+        WORK_PRINCIPAL_UID = #{record.workPrincipalUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketReceiveUid != null" >
+        TICKET_RECEIVE_UID = #{record.ticketReceiveUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketSignUid != null" >
+        TICKET_SIGN_UID = #{record.ticketSignUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workPermissionUid != null" >
+        WORK_PERMISSION_UID = #{record.workPermissionUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workEndPermissionUid != null" >
+        WORK_END_PERMISSION_UID = #{record.workEndPermissionUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.watchUid != null" >
+        WATCH_UID = #{record.watchUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketEndWatchUid != null" >
+        TICKET_END_WATCH_UID = #{record.ticketEndWatchUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentOid != null" >
+        DEPARTMENT_OID = #{record.departmentOid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planStartTime != null" >
+        PLAN_START_TIME = #{record.planStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.planEndTime != null" >
+        PLAN_END_TIME = #{record.planEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.receiveTime != null" >
+        RECEIVE_TIME = #{record.receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.permissionTime != null" >
+        PERMISSION_TIME = #{record.permissionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.workEndTime != null" >
+        WORK_END_TIME = #{record.workEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ticketEndTime != null" >
+        TICKET_END_TIME = #{record.ticketEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.flowState != null" >
+        FLOW_STATE = #{record.flowState,jdbcType=INTEGER},
+      </if>
+      <if test="record.workMemberCount != null" >
+        WORK_MEMBER_COUNT = #{record.workMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.whetherOuterDept != null" >
+        WHETHER_OUTER_DEPT = #{record.whetherOuterDept,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCommunicationTicket != null" >
+        IS_COMMUNICATION_TICKET = #{record.isCommunicationTicket,jdbcType=INTEGER},
+      </if>
+      <if test="record.secondbillCount != null" >
+        SECONDBILL_COUNT = #{record.secondbillCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.isExitSwitch != null" >
+        IS_EXIT_SWITCH = #{record.isExitSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="record.whetherSecondbill != null" >
+        WHETHER_SECONDBILL = #{record.whetherSecondbill,jdbcType=INTEGER},
+      </if>
+      <if test="record.whetherQualified != null" >
+        WHETHER_QUALIFIED = #{record.whetherQualified,jdbcType=INTEGER},
+      </if>
+      <if test="record.whetherNomative != null" >
+        WHETHER_NOMATIVE = #{record.whetherNomative,jdbcType=INTEGER},
+      </if>
+      <if test="record.qualifiedState != null" >
+        QUALIFIED_STATE = #{record.qualifiedState,jdbcType=INTEGER},
+      </if>
+      <if test="record.whetherGuardianSign != null" >
+        WHETHER_GUARDIAN_SIGN = #{record.whetherGuardianSign,jdbcType=INTEGER},
+      </if>
+      <if test="record.guardianUid != null" >
+        GUARDIAN_UID = #{record.guardianUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workPrincipalTel != null" >
+        WORK_PRINCIPAL_TEL = #{record.workPrincipalTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketNo != null" >
+        TICKET_NO = #{record.ticketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createOid != null" >
+        CREATE_OID = #{record.createOid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUid != null" >
+        CREATE_UID = #{record.createUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.processInsId != null" >
+        PROCESS_INS_ID = #{record.processInsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.functionLocationId != null" >
+        FUNCTION_LOCATION_ID = #{record.functionLocationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.functionLocationName != null" >
+        FUNCTION_LOCATION_NAME = #{record.functionLocationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentOname != null" >
+        DEPARTMENT_ONAME = #{record.departmentOname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optimisticLockVersion != null" >
+        OPTIMISTIC_LOCK_VERSION = #{record.optimisticLockVersion,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dataFrom != null" >
+        DATA_FROM = #{record.dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bureauCode != null" >
+        BUREAU_CODE = #{record.bureauCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceCode != null" >
+        PROVINCE_CODE = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketCounterSignUid != null" >
+        TICKET_COUNTER_SIGN_UID = #{record.ticketCounterSignUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workMemberUid != null" >
+        WORK_MEMBER_UID = #{record.workMemberUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workMemberUname != null" >
+        WORK_MEMBER_UNAME = #{record.workMemberUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workTask != null" >
+        WORK_TASK = #{record.workTask,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workPlace != null" >
+        WORK_PLACE = #{record.workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerGridFlag != null" >
+        POWER_GRID_FLAG = #{record.powerGridFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.ticketSignTime != null" >
+        TICKET_SIGN_TIME = #{record.ticketSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ticketCounterSignTime != null" >
+        TICKET_COUNTER_SIGN_TIME = #{record.ticketCounterSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.functionName != null" >
+        FUNCTION_NAME = #{record.functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permissionFlag != null" >
+        PERMISSION_FLAG = #{record.permissionFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.major != null" >
+        MAJOR = #{record.major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outOrIn != null" >
+        OUT_OR_IN = #{record.outOrIn,jdbcType=INTEGER},
+      </if>
+      <if test="record.workPrincipalUname != null" >
+        WORK_PRINCIPAL_UNAME = #{record.workPrincipalUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketSignUname != null" >
+        TICKET_SIGN_UNAME = #{record.ticketSignUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.watchUname != null" >
+        WATCH_UNAME = #{record.watchUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workPermissionUname != null" >
+        WORK_PERMISSION_UNAME = #{record.workPermissionUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workEndPermissionUname != null" >
+        WORK_END_PERMISSION_UNAME = #{record.workEndPermissionUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketCounterSignUname != null" >
+        TICKET_COUNTER_SIGN_UNAME = #{record.ticketCounterSignUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketReceiveUname != null" >
+        TICKET_RECEIVE_UNAME = #{record.ticketReceiveUname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sp_pd_wticket_base
+    set ID = #{record.id,jdbcType=VARCHAR},
+      TICKET_TYPE = #{record.ticketType,jdbcType=INTEGER},
+      WORK_STATE = #{record.workState,jdbcType=INTEGER},
+      WORK_PRINCIPAL_UID = #{record.workPrincipalUid,jdbcType=VARCHAR},
+      TICKET_RECEIVE_UID = #{record.ticketReceiveUid,jdbcType=VARCHAR},
+      TICKET_SIGN_UID = #{record.ticketSignUid,jdbcType=VARCHAR},
+      WORK_PERMISSION_UID = #{record.workPermissionUid,jdbcType=VARCHAR},
+      WORK_END_PERMISSION_UID = #{record.workEndPermissionUid,jdbcType=VARCHAR},
+      WATCH_UID = #{record.watchUid,jdbcType=VARCHAR},
+      TICKET_END_WATCH_UID = #{record.ticketEndWatchUid,jdbcType=VARCHAR},
+      DEPARTMENT_OID = #{record.departmentOid,jdbcType=VARCHAR},
+      PLAN_START_TIME = #{record.planStartTime,jdbcType=TIMESTAMP},
+      PLAN_END_TIME = #{record.planEndTime,jdbcType=TIMESTAMP},
+      RECEIVE_TIME = #{record.receiveTime,jdbcType=TIMESTAMP},
+      PERMISSION_TIME = #{record.permissionTime,jdbcType=TIMESTAMP},
+      WORK_END_TIME = #{record.workEndTime,jdbcType=TIMESTAMP},
+      TICKET_END_TIME = #{record.ticketEndTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      FLOW_STATE = #{record.flowState,jdbcType=INTEGER},
+      WORK_MEMBER_COUNT = #{record.workMemberCount,jdbcType=INTEGER},
+      WHETHER_OUTER_DEPT = #{record.whetherOuterDept,jdbcType=INTEGER},
+      IS_COMMUNICATION_TICKET = #{record.isCommunicationTicket,jdbcType=INTEGER},
+      SECONDBILL_COUNT = #{record.secondbillCount,jdbcType=INTEGER},
+      IS_EXIT_SWITCH = #{record.isExitSwitch,jdbcType=INTEGER},
+      WHETHER_SECONDBILL = #{record.whetherSecondbill,jdbcType=INTEGER},
+      WHETHER_QUALIFIED = #{record.whetherQualified,jdbcType=INTEGER},
+      WHETHER_NOMATIVE = #{record.whetherNomative,jdbcType=INTEGER},
+      QUALIFIED_STATE = #{record.qualifiedState,jdbcType=INTEGER},
+      WHETHER_GUARDIAN_SIGN = #{record.whetherGuardianSign,jdbcType=INTEGER},
+      GUARDIAN_UID = #{record.guardianUid,jdbcType=VARCHAR},
+      WORK_PRINCIPAL_TEL = #{record.workPrincipalTel,jdbcType=VARCHAR},
+      TICKET_NO = #{record.ticketNo,jdbcType=VARCHAR},
+      CREATE_OID = #{record.createOid,jdbcType=VARCHAR},
+      CREATE_UID = #{record.createUid,jdbcType=VARCHAR},
+      PROCESS_INS_ID = #{record.processInsId,jdbcType=VARCHAR},
+      FUNCTION_LOCATION_ID = #{record.functionLocationId,jdbcType=VARCHAR},
+      FUNCTION_LOCATION_NAME = #{record.functionLocationName,jdbcType=VARCHAR},
+      DEPARTMENT_ONAME = #{record.departmentOname,jdbcType=VARCHAR},
+      OPTIMISTIC_LOCK_VERSION = #{record.optimisticLockVersion,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      DATA_FROM = #{record.dataFrom,jdbcType=VARCHAR},
+      BUREAU_CODE = #{record.bureauCode,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{record.provinceCode,jdbcType=VARCHAR},
+      TICKET_COUNTER_SIGN_UID = #{record.ticketCounterSignUid,jdbcType=VARCHAR},
+      WORK_MEMBER_UID = #{record.workMemberUid,jdbcType=VARCHAR},
+      WORK_MEMBER_UNAME = #{record.workMemberUname,jdbcType=VARCHAR},
+      WORK_TASK = #{record.workTask,jdbcType=VARCHAR},
+      WORK_PLACE = #{record.workPlace,jdbcType=VARCHAR},
+      POWER_GRID_FLAG = #{record.powerGridFlag,jdbcType=INTEGER},
+      TICKET_SIGN_TIME = #{record.ticketSignTime,jdbcType=TIMESTAMP},
+      TICKET_COUNTER_SIGN_TIME = #{record.ticketCounterSignTime,jdbcType=TIMESTAMP},
+      FUNCTION_NAME = #{record.functionName,jdbcType=VARCHAR},
+      PERMISSION_FLAG = #{record.permissionFlag,jdbcType=INTEGER},
+      MAJOR = #{record.major,jdbcType=VARCHAR},
+      OUT_OR_IN = #{record.outOrIn,jdbcType=INTEGER},
+      WORK_PRINCIPAL_UNAME = #{record.workPrincipalUname,jdbcType=VARCHAR},
+      TICKET_SIGN_UNAME = #{record.ticketSignUname,jdbcType=VARCHAR},
+      WATCH_UNAME = #{record.watchUname,jdbcType=VARCHAR},
+      WORK_PERMISSION_UNAME = #{record.workPermissionUname,jdbcType=VARCHAR},
+      WORK_END_PERMISSION_UNAME = #{record.workEndPermissionUname,jdbcType=VARCHAR},
+      TICKET_COUNTER_SIGN_UNAME = #{record.ticketCounterSignUname,jdbcType=VARCHAR},
+      TICKET_RECEIVE_UNAME = #{record.ticketReceiveUname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.core.model.PdWticketBase" >
+    update sp_pd_wticket_base
+    <set >
+      <if test="ticketType != null" >
+        TICKET_TYPE = #{ticketType,jdbcType=INTEGER},
+      </if>
+      <if test="workState != null" >
+        WORK_STATE = #{workState,jdbcType=INTEGER},
+      </if>
+      <if test="workPrincipalUid != null" >
+        WORK_PRINCIPAL_UID = #{workPrincipalUid,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketReceiveUid != null" >
+        TICKET_RECEIVE_UID = #{ticketReceiveUid,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketSignUid != null" >
+        TICKET_SIGN_UID = #{ticketSignUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workPermissionUid != null" >
+        WORK_PERMISSION_UID = #{workPermissionUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workEndPermissionUid != null" >
+        WORK_END_PERMISSION_UID = #{workEndPermissionUid,jdbcType=VARCHAR},
+      </if>
+      <if test="watchUid != null" >
+        WATCH_UID = #{watchUid,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketEndWatchUid != null" >
+        TICKET_END_WATCH_UID = #{ticketEndWatchUid,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentOid != null" >
+        DEPARTMENT_OID = #{departmentOid,jdbcType=VARCHAR},
+      </if>
+      <if test="planStartTime != null" >
+        PLAN_START_TIME = #{planStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndTime != null" >
+        PLAN_END_TIME = #{planEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null" >
+        RECEIVE_TIME = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="permissionTime != null" >
+        PERMISSION_TIME = #{permissionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workEndTime != null" >
+        WORK_END_TIME = #{workEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketEndTime != null" >
+        TICKET_END_TIME = #{ticketEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flowState != null" >
+        FLOW_STATE = #{flowState,jdbcType=INTEGER},
+      </if>
+      <if test="workMemberCount != null" >
+        WORK_MEMBER_COUNT = #{workMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="whetherOuterDept != null" >
+        WHETHER_OUTER_DEPT = #{whetherOuterDept,jdbcType=INTEGER},
+      </if>
+      <if test="isCommunicationTicket != null" >
+        IS_COMMUNICATION_TICKET = #{isCommunicationTicket,jdbcType=INTEGER},
+      </if>
+      <if test="secondbillCount != null" >
+        SECONDBILL_COUNT = #{secondbillCount,jdbcType=INTEGER},
+      </if>
+      <if test="isExitSwitch != null" >
+        IS_EXIT_SWITCH = #{isExitSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="whetherSecondbill != null" >
+        WHETHER_SECONDBILL = #{whetherSecondbill,jdbcType=INTEGER},
+      </if>
+      <if test="whetherQualified != null" >
+        WHETHER_QUALIFIED = #{whetherQualified,jdbcType=INTEGER},
+      </if>
+      <if test="whetherNomative != null" >
+        WHETHER_NOMATIVE = #{whetherNomative,jdbcType=INTEGER},
+      </if>
+      <if test="qualifiedState != null" >
+        QUALIFIED_STATE = #{qualifiedState,jdbcType=INTEGER},
+      </if>
+      <if test="whetherGuardianSign != null" >
+        WHETHER_GUARDIAN_SIGN = #{whetherGuardianSign,jdbcType=INTEGER},
+      </if>
+      <if test="guardianUid != null" >
+        GUARDIAN_UID = #{guardianUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workPrincipalTel != null" >
+        WORK_PRINCIPAL_TEL = #{workPrincipalTel,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketNo != null" >
+        TICKET_NO = #{ticketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createOid != null" >
+        CREATE_OID = #{createOid,jdbcType=VARCHAR},
+      </if>
+      <if test="createUid != null" >
+        CREATE_UID = #{createUid,jdbcType=VARCHAR},
+      </if>
+      <if test="processInsId != null" >
+        PROCESS_INS_ID = #{processInsId,jdbcType=VARCHAR},
+      </if>
+      <if test="functionLocationId != null" >
+        FUNCTION_LOCATION_ID = #{functionLocationId,jdbcType=VARCHAR},
+      </if>
+      <if test="functionLocationName != null" >
+        FUNCTION_LOCATION_NAME = #{functionLocationName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentOname != null" >
+        DEPARTMENT_ONAME = #{departmentOname,jdbcType=VARCHAR},
+      </if>
+      <if test="optimisticLockVersion != null" >
+        OPTIMISTIC_LOCK_VERSION = #{optimisticLockVersion,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataFrom != null" >
+        DATA_FROM = #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="bureauCode != null" >
+        BUREAU_CODE = #{bureauCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCounterSignUid != null" >
+        TICKET_COUNTER_SIGN_UID = #{ticketCounterSignUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workMemberUid != null" >
+        WORK_MEMBER_UID = #{workMemberUid,jdbcType=VARCHAR},
+      </if>
+      <if test="workMemberUname != null" >
+        WORK_MEMBER_UNAME = #{workMemberUname,jdbcType=VARCHAR},
+      </if>
+      <if test="workTask != null" >
+        WORK_TASK = #{workTask,jdbcType=VARCHAR},
+      </if>
+      <if test="workPlace != null" >
+        WORK_PLACE = #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="powerGridFlag != null" >
+        POWER_GRID_FLAG = #{powerGridFlag,jdbcType=INTEGER},
+      </if>
+      <if test="ticketSignTime != null" >
+        TICKET_SIGN_TIME = #{ticketSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketCounterSignTime != null" >
+        TICKET_COUNTER_SIGN_TIME = #{ticketCounterSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="functionName != null" >
+        FUNCTION_NAME = #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionFlag != null" >
+        PERMISSION_FLAG = #{permissionFlag,jdbcType=INTEGER},
+      </if>
+      <if test="major != null" >
+        MAJOR = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="outOrIn != null" >
+        OUT_OR_IN = #{outOrIn,jdbcType=INTEGER},
+      </if>
+      <if test="workPrincipalUname != null" >
+        WORK_PRINCIPAL_UNAME = #{workPrincipalUname,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketSignUname != null" >
+        TICKET_SIGN_UNAME = #{ticketSignUname,jdbcType=VARCHAR},
+      </if>
+      <if test="watchUname != null" >
+        WATCH_UNAME = #{watchUname,jdbcType=VARCHAR},
+      </if>
+      <if test="workPermissionUname != null" >
+        WORK_PERMISSION_UNAME = #{workPermissionUname,jdbcType=VARCHAR},
+      </if>
+      <if test="workEndPermissionUname != null" >
+        WORK_END_PERMISSION_UNAME = #{workEndPermissionUname,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCounterSignUname != null" >
+        TICKET_COUNTER_SIGN_UNAME = #{ticketCounterSignUname,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketReceiveUname != null" >
+        TICKET_RECEIVE_UNAME = #{ticketReceiveUname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.core.model.PdWticketBase" >
+    update sp_pd_wticket_base
+    set TICKET_TYPE = #{ticketType,jdbcType=INTEGER},
+      WORK_STATE = #{workState,jdbcType=INTEGER},
+      WORK_PRINCIPAL_UID = #{workPrincipalUid,jdbcType=VARCHAR},
+      TICKET_RECEIVE_UID = #{ticketReceiveUid,jdbcType=VARCHAR},
+      TICKET_SIGN_UID = #{ticketSignUid,jdbcType=VARCHAR},
+      WORK_PERMISSION_UID = #{workPermissionUid,jdbcType=VARCHAR},
+      WORK_END_PERMISSION_UID = #{workEndPermissionUid,jdbcType=VARCHAR},
+      WATCH_UID = #{watchUid,jdbcType=VARCHAR},
+      TICKET_END_WATCH_UID = #{ticketEndWatchUid,jdbcType=VARCHAR},
+      DEPARTMENT_OID = #{departmentOid,jdbcType=VARCHAR},
+      PLAN_START_TIME = #{planStartTime,jdbcType=TIMESTAMP},
+      PLAN_END_TIME = #{planEndTime,jdbcType=TIMESTAMP},
+      RECEIVE_TIME = #{receiveTime,jdbcType=TIMESTAMP},
+      PERMISSION_TIME = #{permissionTime,jdbcType=TIMESTAMP},
+      WORK_END_TIME = #{workEndTime,jdbcType=TIMESTAMP},
+      TICKET_END_TIME = #{ticketEndTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      FLOW_STATE = #{flowState,jdbcType=INTEGER},
+      WORK_MEMBER_COUNT = #{workMemberCount,jdbcType=INTEGER},
+      WHETHER_OUTER_DEPT = #{whetherOuterDept,jdbcType=INTEGER},
+      IS_COMMUNICATION_TICKET = #{isCommunicationTicket,jdbcType=INTEGER},
+      SECONDBILL_COUNT = #{secondbillCount,jdbcType=INTEGER},
+      IS_EXIT_SWITCH = #{isExitSwitch,jdbcType=INTEGER},
+      WHETHER_SECONDBILL = #{whetherSecondbill,jdbcType=INTEGER},
+      WHETHER_QUALIFIED = #{whetherQualified,jdbcType=INTEGER},
+      WHETHER_NOMATIVE = #{whetherNomative,jdbcType=INTEGER},
+      QUALIFIED_STATE = #{qualifiedState,jdbcType=INTEGER},
+      WHETHER_GUARDIAN_SIGN = #{whetherGuardianSign,jdbcType=INTEGER},
+      GUARDIAN_UID = #{guardianUid,jdbcType=VARCHAR},
+      WORK_PRINCIPAL_TEL = #{workPrincipalTel,jdbcType=VARCHAR},
+      TICKET_NO = #{ticketNo,jdbcType=VARCHAR},
+      CREATE_OID = #{createOid,jdbcType=VARCHAR},
+      CREATE_UID = #{createUid,jdbcType=VARCHAR},
+      PROCESS_INS_ID = #{processInsId,jdbcType=VARCHAR},
+      FUNCTION_LOCATION_ID = #{functionLocationId,jdbcType=VARCHAR},
+      FUNCTION_LOCATION_NAME = #{functionLocationName,jdbcType=VARCHAR},
+      DEPARTMENT_ONAME = #{departmentOname,jdbcType=VARCHAR},
+      OPTIMISTIC_LOCK_VERSION = #{optimisticLockVersion,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      DATA_FROM = #{dataFrom,jdbcType=VARCHAR},
+      BUREAU_CODE = #{bureauCode,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      TICKET_COUNTER_SIGN_UID = #{ticketCounterSignUid,jdbcType=VARCHAR},
+      WORK_MEMBER_UID = #{workMemberUid,jdbcType=VARCHAR},
+      WORK_MEMBER_UNAME = #{workMemberUname,jdbcType=VARCHAR},
+      WORK_TASK = #{workTask,jdbcType=VARCHAR},
+      WORK_PLACE = #{workPlace,jdbcType=VARCHAR},
+      POWER_GRID_FLAG = #{powerGridFlag,jdbcType=INTEGER},
+      TICKET_SIGN_TIME = #{ticketSignTime,jdbcType=TIMESTAMP},
+      TICKET_COUNTER_SIGN_TIME = #{ticketCounterSignTime,jdbcType=TIMESTAMP},
+      FUNCTION_NAME = #{functionName,jdbcType=VARCHAR},
+      PERMISSION_FLAG = #{permissionFlag,jdbcType=INTEGER},
+      MAJOR = #{major,jdbcType=VARCHAR},
+      OUT_OR_IN = #{outOrIn,jdbcType=INTEGER},
+      WORK_PRINCIPAL_UNAME = #{workPrincipalUname,jdbcType=VARCHAR},
+      TICKET_SIGN_UNAME = #{ticketSignUname,jdbcType=VARCHAR},
+      WATCH_UNAME = #{watchUname,jdbcType=VARCHAR},
+      WORK_PERMISSION_UNAME = #{workPermissionUname,jdbcType=VARCHAR},
+      WORK_END_PERMISSION_UNAME = #{workEndPermissionUname,jdbcType=VARCHAR},
+      TICKET_COUNTER_SIGN_UNAME = #{ticketCounterSignUname,jdbcType=VARCHAR},
+      TICKET_RECEIVE_UNAME = #{ticketReceiveUname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryPageList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select t.*, t1.BUSINESS_NAME, t1.BUSINESS_ID from sp_pd_wticket_base  t
+    inner join sp_pd_wticket_business_re t1 on t1.BUSINESS_TYPE = 'plan' and t1.WTICKET_ID = t.ID
+    where 1=1
+    <if test='planCode != null and planCode !=""' >
+      and t1.BUSINESS_NAME = #{planCode,jdbcType=VARCHAR}
+    </if>
+    <if test='workPrincipalUname != null and workPrincipalUname !=""' >
+      and t.WORK_PRINCIPAL_UNAME like #{workPrincipalUname,jdbcType=VARCHAR}
+    </if>
+    <if test='workTask != null and workTask !=""' >
+      and t.WORK_TASK like #{workTask,jdbcType=VARCHAR}
+    </if>
+    <if test='workPlace != null and workPlace !=""' >
+      and t.WORK_PLACE like #{workPlace,jdbcType=VARCHAR}
+    </if>
+    <if test="workState != null">
+      and t.WORK_STATE = #{workState,jdbcType=INTEGER}
+    </if>
+    <choose>
+      <when test='dateType == "1"'>
+        <if test="beginDate != null">
+          and t.PLAN_START_TIME &gt;= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endDate != null">
+          and t.PLAN_END_TIME &lt; #{endDate,jdbcType=TIMESTAMP}
+        </if>
+      </when>
+      <when test='dateType == "2"'>
+        <if test="beginDate != null">
+          and t.WORK_END_TIME &gt;= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endDate != null">
+          and t.WORK_END_TIME &lt; #{endDate,jdbcType=TIMESTAMP}
+        </if>
+      </when>
+      <when test='dateType == "3"'>
+        <if test="beginDate != null">
+          and t.TICKET_END_TIME &gt;= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endDate != null">
+          and t.TICKET_END_TIME &lt; #{endDate,jdbcType=TIMESTAMP}
+        </if>
+      </when>
+      <when test='dateType == "4"'>
+        <if test="beginDate != null">
+          and t.TICKET_SIGN_TIME &gt;= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endDate != null">
+          and t.TICKET_SIGN_TIME &lt; #{endDate,jdbcType=TIMESTAMP}
+        </if>
+      </when>
+      <when test='dateType == "5"'>
+        <if test="beginDate != null">
+          and t.RECEIVE_TIME &gt;= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endDate != null">
+          and t.RECEIVE_TIME &lt; #{endDate,jdbcType=TIMESTAMP}
+        </if>
+      </when>
+      <when test='dateType == "6"'>
+        <if test="beginDate != null">
+          and t.PERMISSION_TIME &gt;= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endDate != null">
+          and t.PERMISSION_TIME &lt; #{endDate,jdbcType=TIMESTAMP}
+        </if>
+      </when>
+      <otherwise>
+      </otherwise>
+    </choose>
+    order by t.UPDATE_TIME desc
+  </select>
+
+  <select id="getInfo" resultType="java.util.HashMap" parameterType="java.lang.String" >
+    select
+    t.ID, t.TICKET_TYPE, t.WORK_STATE, t.WORK_PRINCIPAL_UID, t.TICKET_RECEIVE_UID, t.TICKET_SIGN_UID,
+    t.WORK_PERMISSION_UID, t.WORK_END_PERMISSION_UID, t.WATCH_UID, t.TICKET_END_WATCH_UID, t.DEPARTMENT_OID,
+    t.PLAN_START_TIME, t.PLAN_END_TIME, t.RECEIVE_TIME, t.PERMISSION_TIME, t.WORK_END_TIME, t.TICKET_END_TIME,
+    t.CREATE_TIME, t.FLOW_STATE, t.WORK_MEMBER_COUNT, t.WHETHER_OUTER_DEPT, t.IS_COMMUNICATION_TICKET,
+    t.SECONDBILL_COUNT, t.IS_EXIT_SWITCH, t.WHETHER_SECONDBILL, t.WHETHER_QUALIFIED, t.WHETHER_NOMATIVE,
+    t.QUALIFIED_STATE, t.WHETHER_GUARDIAN_SIGN, t.GUARDIAN_UID, t.WORK_PRINCIPAL_TEL, t.TICKET_NO,
+    t.CREATE_OID, t.CREATE_UID, t.PROCESS_INS_ID, t.FUNCTION_LOCATION_ID, t.FUNCTION_LOCATION_NAME,
+    t.DEPARTMENT_ONAME, t.OPTIMISTIC_LOCK_VERSION, t.UPDATE_TIME, t.DATA_FROM, t.BUREAU_CODE, t.PROVINCE_CODE,
+    t.TICKET_COUNTER_SIGN_UID, t.WORK_MEMBER_UID, t.WORK_MEMBER_UNAME, t.WORK_TASK, t.WORK_PLACE,
+    t.POWER_GRID_FLAG, t.TICKET_SIGN_TIME, t.TICKET_COUNTER_SIGN_TIME, t.FUNCTION_NAME, t.PERMISSION_FLAG,
+    t.MAJOR, t.OUT_OR_IN, t.WORK_PRINCIPAL_UNAME, t.TICKET_SIGN_UNAME, t.WATCH_UNAME, t.WORK_PERMISSION_UNAME,
+    t.WORK_END_PERMISSION_UNAME, t.TICKET_COUNTER_SIGN_UNAME, t.TICKET_RECEIVE_UNAME
+    ,t1.BUSINESS_ID, t1.BUSINESS_NAME
+    from sp_pd_wticket_base t
+    inner join sp_pd_wticket_business_re t1 on t.ID = t1.WTICKET_ID and t1.BUSINESS_TYPE = 'plan'
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryWithTicketList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select
+    t.ID, t.TICKET_NO, t.WORK_TASK, t.WORK_PLACE, t.WORK_MEMBER_UNAME, t.WORK_PRINCIPAL_UNAME
+    , t1.BUSINESS_ID PLAN_ID, t1.BUSINESS_NAME PLAN_CODE
+    from sp_pd_wticket_base  t
+    inner join sp_pd_wticket_business_re t1 on t1.BUSINESS_TYPE = 'plan' and t1.WTICKET_ID = t.ID
+    <if test='paperNo != null and paperNo !=""' >
+      inner join (
+      select distinct a.TICKET_ID from sp_pd_wticket_person a
+      where 1=1
+      and a.PAPER_NO = #{paperNo,jdbcType=VARCHAR}
+      ) t9 on t.ID = t9.TICKET_ID
+    </if>
+    <if test='customerName != null and customerName !=""' >
+      inner join (
+      select distinct a.TICKET_ID from sp_pd_wticket_person a
+      where 1=1
+      and a.MEMBER_NAME like #{customerName,jdbcType=VARCHAR}
+      ) t9 on t.ID = t9.TICKET_ID
+    </if>
+    where 1=1
+    <if test='workTask != null and workTask !=""' >
+      and t.WORK_TASK like #{workTask,jdbcType=VARCHAR}
+    </if>
+    order by t.UPDATE_TIME desc
+  </select>
+
+  <select id="queryPageList_app" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select t.ID, t.TICKET_NO, t.TICKET_TYPE, t.WORK_TASK, t.WORK_PLACE, t.WORK_STATE, t.PLAN_START_TIME, t.PLAN_END_TIME, t.RECEIVE_TIME
+    from sp_pd_wticket_base  t
+    inner join sp_pd_wticket_business_re t1 on t1.BUSINESS_TYPE = 'plan' and t1.WTICKET_ID = t.ID
+    where 1=1
+    <if test='workPrincipalUname != null and workPrincipalUname !=""' >
+      and t.WORK_PRINCIPAL_UNAME like #{workPrincipalUname,jdbcType=VARCHAR}
+    </if>
+    <if test='workTask != null and workTask !=""' >
+      and t.WORK_TASK like #{workTask,jdbcType=VARCHAR}
+    </if>
+    <if test='workPlace != null and workPlace !=""' >
+      and t.WORK_PLACE like #{workPlace,jdbcType=VARCHAR}
+    </if>
+    <if test="workState != null">
+      and t.WORK_STATE = #{workState,jdbcType=INTEGER}
+    </if>
+    order by t.UPDATE_TIME desc
+  </select>
+
+  <select id="getMemberList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select t1.PAPER_NO, t1.CUSTOMER_NAME, t1.PERSON_TYPE, t1.PHONE_NO MOBILE, t2.PHOTO_URL
+    from sp_pd_wticket_person  t
+    inner join cc_core_personal_info t1 on t.PAPER_NO = t1.PAPER_NO
+    left join cc_core_photo_info t2 on t1.U_ID = t2.PERSONAL_ID
+    where 1=1
+    and t.TICKET_ID = #{ticketId,jdbcType=VARCHAR}
+    order by t1.CUSTOMER_NAME
+  </select>
+
+</mapper>

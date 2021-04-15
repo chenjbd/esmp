@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.core.dao.WgActMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.core.model.WgAct" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="WG_TIME" property="wgTime" jdbcType="TIMESTAMP" />
+    <result column="WG_TYPE" property="wgType" jdbcType="VARCHAR" />
+    <result column="WG_REMARK" property="wgRemark" jdbcType="VARCHAR" />
+    <result column="WG_PHOTO_URL" property="wgPhotoUrl" jdbcType="VARCHAR" />
+    <result column="PAPER_TYPE" property="paperType" jdbcType="VARCHAR" />
+    <result column="PAPER_NO" property="paperNo" jdbcType="VARCHAR" />
+    <result column="CUSTOMER_NAME" property="customerName" jdbcType="VARCHAR" />
+    <result column="TICKET_ID" property="ticketId" jdbcType="VARCHAR" />
+    <result column="TICKET_NO" property="ticketNo" jdbcType="VARCHAR" />
+    <result column="PLAN_ID" property="planId" jdbcType="VARCHAR" />
+    <result column="PLAN_CODE" property="planCode" jdbcType="VARCHAR" />
+    <result column="EVENT_ID" property="eventId" jdbcType="VARCHAR" />
+    <result column="IS_CONFIRM" property="isConfirm" jdbcType="VARCHAR" />
+    <result column="CONFIRM_TIME" property="confirmTime" jdbcType="TIMESTAMP" />
+    <result column="CONFIRM_OPR" property="confirmOpr" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="CRT_OPR" property="crtOpr" jdbcType="VARCHAR" />
+    <result column="LST_TIME" property="lstTime" jdbcType="TIMESTAMP" />
+    <result column="LST_OPR" property="lstOpr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SOURCE, WG_TIME, WG_TYPE, WG_REMARK, WG_PHOTO_URL, PAPER_TYPE, PAPER_NO, CUSTOMER_NAME, 
+    TICKET_ID, TICKET_NO, PLAN_ID, PLAN_CODE, EVENT_ID, IS_CONFIRM, CONFIRM_TIME, CONFIRM_OPR, 
+    CRT_TIME, CRT_OPR, LST_TIME, LST_OPR
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.core.model.WgActExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cc_core_wg_act
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cc_core_wg_act
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cc_core_wg_act
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.core.model.WgActExample" >
+    delete from cc_core_wg_act
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.core.model.WgAct" >
+    insert into cc_core_wg_act (ID, SOURCE, WG_TIME, 
+      WG_TYPE, WG_REMARK, WG_PHOTO_URL, 
+      PAPER_TYPE, PAPER_NO, CUSTOMER_NAME, 
+      TICKET_ID, TICKET_NO, PLAN_ID, 
+      PLAN_CODE, EVENT_ID, IS_CONFIRM, 
+      CONFIRM_TIME, CONFIRM_OPR, CRT_TIME, 
+      CRT_OPR, LST_TIME, LST_OPR
+      )
+    values (#{id,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{wgTime,jdbcType=TIMESTAMP}, 
+      #{wgType,jdbcType=VARCHAR}, #{wgRemark,jdbcType=VARCHAR}, #{wgPhotoUrl,jdbcType=VARCHAR}, 
+      #{paperType,jdbcType=VARCHAR}, #{paperNo,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{ticketId,jdbcType=VARCHAR}, #{ticketNo,jdbcType=VARCHAR}, #{planId,jdbcType=VARCHAR}, 
+      #{planCode,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR}, #{isConfirm,jdbcType=VARCHAR}, 
+      #{confirmTime,jdbcType=TIMESTAMP}, #{confirmOpr,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, 
+      #{crtOpr,jdbcType=VARCHAR}, #{lstTime,jdbcType=TIMESTAMP}, #{lstOpr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.core.model.WgAct" >
+    insert into cc_core_wg_act
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="source != null" >
+        SOURCE,
+      </if>
+      <if test="wgTime != null" >
+        WG_TIME,
+      </if>
+      <if test="wgType != null" >
+        WG_TYPE,
+      </if>
+      <if test="wgRemark != null" >
+        WG_REMARK,
+      </if>
+      <if test="wgPhotoUrl != null" >
+        WG_PHOTO_URL,
+      </if>
+      <if test="paperType != null" >
+        PAPER_TYPE,
+      </if>
+      <if test="paperNo != null" >
+        PAPER_NO,
+      </if>
+      <if test="customerName != null" >
+        CUSTOMER_NAME,
+      </if>
+      <if test="ticketId != null" >
+        TICKET_ID,
+      </if>
+      <if test="ticketNo != null" >
+        TICKET_NO,
+      </if>
+      <if test="planId != null" >
+        PLAN_ID,
+      </if>
+      <if test="planCode != null" >
+        PLAN_CODE,
+      </if>
+      <if test="eventId != null" >
+        EVENT_ID,
+      </if>
+      <if test="isConfirm != null" >
+        IS_CONFIRM,
+      </if>
+      <if test="confirmTime != null" >
+        CONFIRM_TIME,
+      </if>
+      <if test="confirmOpr != null" >
+        CONFIRM_OPR,
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME,
+      </if>
+      <if test="crtOpr != null" >
+        CRT_OPR,
+      </if>
+      <if test="lstTime != null" >
+        LST_TIME,
+      </if>
+      <if test="lstOpr != null" >
+        LST_OPR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="wgTime != null" >
+        #{wgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wgType != null" >
+        #{wgType,jdbcType=VARCHAR},
+      </if>
+      <if test="wgRemark != null" >
+        #{wgRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="wgPhotoUrl != null" >
+        #{wgPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="paperType != null" >
+        #{paperType,jdbcType=VARCHAR},
+      </if>
+      <if test="paperNo != null" >
+        #{paperNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketId != null" >
+        #{ticketId,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketNo != null" >
+        #{ticketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planId != null" >
+        #{planId,jdbcType=VARCHAR},
+      </if>
+      <if test="planCode != null" >
+        #{planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="isConfirm != null" >
+        #{isConfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null" >
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmOpr != null" >
+        #{confirmOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtOpr != null" >
+        #{crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="lstTime != null" >
+        #{lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstOpr != null" >
+        #{lstOpr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.core.model.WgActExample" resultType="java.lang.Integer" >
+    select count(*) from cc_core_wg_act
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cc_core_wg_act
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        SOURCE = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wgTime != null" >
+        WG_TIME = #{record.wgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.wgType != null" >
+        WG_TYPE = #{record.wgType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wgRemark != null" >
+        WG_REMARK = #{record.wgRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wgPhotoUrl != null" >
+        WG_PHOTO_URL = #{record.wgPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperType != null" >
+        PAPER_TYPE = #{record.paperType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperNo != null" >
+        PAPER_NO = #{record.paperNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerName != null" >
+        CUSTOMER_NAME = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketId != null" >
+        TICKET_ID = #{record.ticketId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketNo != null" >
+        TICKET_NO = #{record.ticketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planId != null" >
+        PLAN_ID = #{record.planId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planCode != null" >
+        PLAN_CODE = #{record.planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventId != null" >
+        EVENT_ID = #{record.eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isConfirm != null" >
+        IS_CONFIRM = #{record.isConfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmTime != null" >
+        CONFIRM_TIME = #{record.confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.confirmOpr != null" >
+        CONFIRM_OPR = #{record.confirmOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crtTime != null" >
+        CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.crtOpr != null" >
+        CRT_OPR = #{record.crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lstTime != null" >
+        LST_TIME = #{record.lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lstOpr != null" >
+        LST_OPR = #{record.lstOpr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cc_core_wg_act
+    set ID = #{record.id,jdbcType=VARCHAR},
+      SOURCE = #{record.source,jdbcType=VARCHAR},
+      WG_TIME = #{record.wgTime,jdbcType=TIMESTAMP},
+      WG_TYPE = #{record.wgType,jdbcType=VARCHAR},
+      WG_REMARK = #{record.wgRemark,jdbcType=VARCHAR},
+      WG_PHOTO_URL = #{record.wgPhotoUrl,jdbcType=VARCHAR},
+      PAPER_TYPE = #{record.paperType,jdbcType=VARCHAR},
+      PAPER_NO = #{record.paperNo,jdbcType=VARCHAR},
+      CUSTOMER_NAME = #{record.customerName,jdbcType=VARCHAR},
+      TICKET_ID = #{record.ticketId,jdbcType=VARCHAR},
+      TICKET_NO = #{record.ticketNo,jdbcType=VARCHAR},
+      PLAN_ID = #{record.planId,jdbcType=VARCHAR},
+      PLAN_CODE = #{record.planCode,jdbcType=VARCHAR},
+      EVENT_ID = #{record.eventId,jdbcType=VARCHAR},
+      IS_CONFIRM = #{record.isConfirm,jdbcType=VARCHAR},
+      CONFIRM_TIME = #{record.confirmTime,jdbcType=TIMESTAMP},
+      CONFIRM_OPR = #{record.confirmOpr,jdbcType=VARCHAR},
+      CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      CRT_OPR = #{record.crtOpr,jdbcType=VARCHAR},
+      LST_TIME = #{record.lstTime,jdbcType=TIMESTAMP},
+      LST_OPR = #{record.lstOpr,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.core.model.WgAct" >
+    update cc_core_wg_act
+    <set >
+      <if test="source != null" >
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="wgTime != null" >
+        WG_TIME = #{wgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wgType != null" >
+        WG_TYPE = #{wgType,jdbcType=VARCHAR},
+      </if>
+      <if test="wgRemark != null" >
+        WG_REMARK = #{wgRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="wgPhotoUrl != null" >
+        WG_PHOTO_URL = #{wgPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="paperType != null" >
+        PAPER_TYPE = #{paperType,jdbcType=VARCHAR},
+      </if>
+      <if test="paperNo != null" >
+        PAPER_NO = #{paperNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketId != null" >
+        TICKET_ID = #{ticketId,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketNo != null" >
+        TICKET_NO = #{ticketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planId != null" >
+        PLAN_ID = #{planId,jdbcType=VARCHAR},
+      </if>
+      <if test="planCode != null" >
+        PLAN_CODE = #{planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        EVENT_ID = #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="isConfirm != null" >
+        IS_CONFIRM = #{isConfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null" >
+        CONFIRM_TIME = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmOpr != null" >
+        CONFIRM_OPR = #{confirmOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtOpr != null" >
+        CRT_OPR = #{crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="lstTime != null" >
+        LST_TIME = #{lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstOpr != null" >
+        LST_OPR = #{lstOpr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.core.model.WgAct" >
+    update cc_core_wg_act
+    set SOURCE = #{source,jdbcType=VARCHAR},
+      WG_TIME = #{wgTime,jdbcType=TIMESTAMP},
+      WG_TYPE = #{wgType,jdbcType=VARCHAR},
+      WG_REMARK = #{wgRemark,jdbcType=VARCHAR},
+      WG_PHOTO_URL = #{wgPhotoUrl,jdbcType=VARCHAR},
+      PAPER_TYPE = #{paperType,jdbcType=VARCHAR},
+      PAPER_NO = #{paperNo,jdbcType=VARCHAR},
+      CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      TICKET_ID = #{ticketId,jdbcType=VARCHAR},
+      TICKET_NO = #{ticketNo,jdbcType=VARCHAR},
+      PLAN_ID = #{planId,jdbcType=VARCHAR},
+      PLAN_CODE = #{planCode,jdbcType=VARCHAR},
+      EVENT_ID = #{eventId,jdbcType=VARCHAR},
+      IS_CONFIRM = #{isConfirm,jdbcType=VARCHAR},
+      CONFIRM_TIME = #{confirmTime,jdbcType=TIMESTAMP},
+      CONFIRM_OPR = #{confirmOpr,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      CRT_OPR = #{crtOpr,jdbcType=VARCHAR},
+      LST_TIME = #{lstTime,jdbcType=TIMESTAMP},
+      LST_OPR = #{lstOpr,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryPageList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select t.* from cc_core_wg_act t
+    <if test='ruleIds != null' >
+      inner join (
+      select distinct a.ACT_ID from cc_core_wg_act_rule a
+      where 1=1
+      and a.RULE_ID in
+      <foreach collection ="ruleIds" item="item" index= "index" open="(" separator ="," close=")">
+        #{item}
+      </foreach>
+      ) t9 on t.ID = t9.ACT_ID
+    </if>
+    where 1=1
+    <if test='customerName != null and customerName !=""' >
+      and t.CUSTOMER_NAME like #{customerName,jdbcType=VARCHAR}
+    </if>
+    <if test='paperNo != null and paperNo != ""'>
+      and t.PAPER_NO = #{paperNo,jdbcType=VARCHAR}
+    </if>
+    <if test='isConfirm != null and isConfirm !=""' >
+      and t.IS_CONFIRM = #{isConfirm,jdbcType=VARCHAR}
+    </if>
+    <if test='wgType != null and wgType !=""' >
+      and t.WG_TYPE = #{wgType,jdbcType=VARCHAR}
+    </if>
+    <choose>
+      <when test='dateType == "1"'>
+        <if test="beginDate != null">
+          and t.WG_TIME &gt;= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endDate != null">
+          and t.WG_TIME &lt; #{endDate,jdbcType=TIMESTAMP}
+        </if>
+      </when>
+      <when test='dateType == "2"'>
+        <if test="beginDate != null">
+          and t.CONFIRM_TIME &gt;= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endDate != null">
+          and t.CONFIRM_TIME &lt; #{endDate,jdbcType=TIMESTAMP}
+        </if>
+      </when>
+      <otherwise>
+      </otherwise>
+    </choose>
+    order by t.CRT_TIME desc
+  </select>
+
+  <select id="getInfo" resultType="java.util.Map" parameterType="java.lang.String" >
+    select
+    t.*,
+    t1.NAME CONFIRM_NAME
+    from cc_core_wg_act t
+    left join cc_pms_account_info t1 on t.CONFIRM_OPR = t1.ACC_NAME
+    where t.ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryPageList_app" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select
+    t.ID, t.SOURCE, t.WG_TIME, t.WG_TYPE, t.WG_REMARK, t.PAPER_NO, t.CUSTOMER_NAME, t.IS_CONFIRM, t.CONFIRM_TIME,
+    case t.SOURCE when '1' then concat('${fileServerUrl}', '/', t.WG_PHOTO_URL) else t.WG_PHOTO_URL end WG_PHOTO_URL
+    from cc_core_wg_act t
+    <if test='ruleIds != null' >
+      inner join (
+      select distinct a.ACT_ID from cc_core_wg_act_rule a
+      where 1=1
+      and a.RULE_ID in
+      <foreach collection ="ruleIds" item="item" index= "index" open="(" separator ="," close=")">
+        #{item}
+      </foreach>
+      ) t9 on t.ID = t9.ACT_ID
+    </if>
+    where 1=1
+    <if test='customerName != null and customerName !=""' >
+      and t.CUSTOMER_NAME like #{customerName,jdbcType=VARCHAR}
+    </if>
+    <if test='paperNo != null and paperNo != ""'>
+      and t.PAPER_NO = #{paperNo,jdbcType=VARCHAR}
+    </if>
+    <if test='isConfirm != null and isConfirm !=""' >
+      and t.IS_CONFIRM = #{isConfirm,jdbcType=VARCHAR}
+    </if>
+    <if test='wgType != null and wgType !=""' >
+      and t.WG_TYPE = #{wgType,jdbcType=VARCHAR}
+    </if>
+    <choose>
+      <when test='dateType == "1"'>
+        <if test="beginDate != null">
+          and t.WG_TIME &gt;= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endDate != null">
+          and t.WG_TIME &lt; #{endDate,jdbcType=TIMESTAMP}
+        </if>
+      </when>
+      <when test='dateType == "2"'>
+        <if test="beginDate != null">
+          and t.CONFIRM_TIME &gt;= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endDate != null">
+          and t.CONFIRM_TIME &lt; #{endDate,jdbcType=TIMESTAMP}
+        </if>
+      </when>
+      <otherwise>
+      </otherwise>
+    </choose>
+    order by t.CRT_TIME desc
+  </select>
+
+</mapper>

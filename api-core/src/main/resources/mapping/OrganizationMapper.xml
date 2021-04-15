@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.core.dao.OrganizationMapper" >
+  <select id="getDeptTreeByPId" resultType="java.util.HashMap" parameterType="map">
+    select t.ORG_ID "id", t.ORG_NAME "name", t.PARENT_ORG_ID "pId",
+    case (select count(1) from TOP_ORGANIZATION a where a.PARENT_ORG_ID = t.ORG_ID) when 0 then 'false' else 'true' end "isParent",
+    t.NAME_FULL_PATH "nameFullPath"
+    from TOP_ORGANIZATION t
+    where 1=1
+    and t.PARENT_ORG_ID = #{pId, jdbcType=VARCHAR}
+    order by t.SORT_NO
+  </select>
+
+  <select id="getOrgInfo" resultType="java.util.HashMap" parameterType="java.lang.String">
+    select t.*
+    from TOP_ORGANIZATION t
+    where 1=1
+    and t.ORG_ID = #{orgId, jdbcType=VARCHAR}
+  </select>
+
+  <select id="countDeptNo" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(1)
+    from TOP_ORGANIZATION t
+    where 1=1
+    and t.ORG_ID = #{orgId, jdbcType=VARCHAR}
+  </select>
+</mapper>

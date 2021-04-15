@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.core.dao.AttendRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.core.model.AttendRule" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ATTEND_NAME" property="attendName" jdbcType="VARCHAR" />
+    <result column="ON_TIME" property="onTime" jdbcType="VARCHAR" />
+    <result column="OFF_TIME" property="offTime" jdbcType="VARCHAR" />
+    <result column="WORK_TIME" property="workTime" jdbcType="INTEGER" />
+    <result column="SERIOUS_LATE_MIN" property="seriousLateMin" jdbcType="INTEGER" />
+    <result column="ABSENT_MIN" property="absentMin" jdbcType="INTEGER" />
+    <result column="LATE_MIN" property="lateMin" jdbcType="INTEGER" />
+    <result column="EARLY_MIN" property="earlyMin" jdbcType="INTEGER" />
+    <result column="ADDRESS_NAME" property="addressName" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="LONGITUDE" property="longitude" jdbcType="VARCHAR" />
+    <result column="LATITUDE" property="latitude" jdbcType="VARCHAR" />
+    <result column="RADIUS" property="radius" jdbcType="INTEGER" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="CRT_OPR" property="crtOpr" jdbcType="VARCHAR" />
+    <result column="LST_TIME" property="lstTime" jdbcType="TIMESTAMP" />
+    <result column="LST_OPR" property="lstOpr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ATTEND_NAME, ON_TIME, OFF_TIME, WORK_TIME, SERIOUS_LATE_MIN, ABSENT_MIN, LATE_MIN, 
+    EARLY_MIN, ADDRESS_NAME, ADDRESS, LONGITUDE, LATITUDE, RADIUS, CRT_TIME, CRT_OPR, 
+    LST_TIME, LST_OPR
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.core.model.AttendRuleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cc_core_attend_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cc_core_attend_rule
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cc_core_attend_rule
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.core.model.AttendRuleExample" >
+    delete from cc_core_attend_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.core.model.AttendRule" >
+    insert into cc_core_attend_rule (ID, ATTEND_NAME, ON_TIME, 
+      OFF_TIME, WORK_TIME, SERIOUS_LATE_MIN, 
+      ABSENT_MIN, LATE_MIN, EARLY_MIN, 
+      ADDRESS_NAME, ADDRESS, LONGITUDE, 
+      LATITUDE, RADIUS, CRT_TIME, 
+      CRT_OPR, LST_TIME, LST_OPR
+      )
+    values (#{id,jdbcType=VARCHAR}, #{attendName,jdbcType=VARCHAR}, #{onTime,jdbcType=VARCHAR}, 
+      #{offTime,jdbcType=VARCHAR}, #{workTime,jdbcType=INTEGER}, #{seriousLateMin,jdbcType=INTEGER}, 
+      #{absentMin,jdbcType=INTEGER}, #{lateMin,jdbcType=INTEGER}, #{earlyMin,jdbcType=INTEGER}, 
+      #{addressName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
+      #{latitude,jdbcType=VARCHAR}, #{radius,jdbcType=INTEGER}, #{crtTime,jdbcType=TIMESTAMP}, 
+      #{crtOpr,jdbcType=VARCHAR}, #{lstTime,jdbcType=TIMESTAMP}, #{lstOpr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.core.model.AttendRule" >
+    insert into cc_core_attend_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="attendName != null" >
+        ATTEND_NAME,
+      </if>
+      <if test="onTime != null" >
+        ON_TIME,
+      </if>
+      <if test="offTime != null" >
+        OFF_TIME,
+      </if>
+      <if test="workTime != null" >
+        WORK_TIME,
+      </if>
+      <if test="seriousLateMin != null" >
+        SERIOUS_LATE_MIN,
+      </if>
+      <if test="absentMin != null" >
+        ABSENT_MIN,
+      </if>
+      <if test="lateMin != null" >
+        LATE_MIN,
+      </if>
+      <if test="earlyMin != null" >
+        EARLY_MIN,
+      </if>
+      <if test="addressName != null" >
+        ADDRESS_NAME,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="longitude != null" >
+        LONGITUDE,
+      </if>
+      <if test="latitude != null" >
+        LATITUDE,
+      </if>
+      <if test="radius != null" >
+        RADIUS,
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME,
+      </if>
+      <if test="crtOpr != null" >
+        CRT_OPR,
+      </if>
+      <if test="lstTime != null" >
+        LST_TIME,
+      </if>
+      <if test="lstOpr != null" >
+        LST_OPR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="attendName != null" >
+        #{attendName,jdbcType=VARCHAR},
+      </if>
+      <if test="onTime != null" >
+        #{onTime,jdbcType=VARCHAR},
+      </if>
+      <if test="offTime != null" >
+        #{offTime,jdbcType=VARCHAR},
+      </if>
+      <if test="workTime != null" >
+        #{workTime,jdbcType=INTEGER},
+      </if>
+      <if test="seriousLateMin != null" >
+        #{seriousLateMin,jdbcType=INTEGER},
+      </if>
+      <if test="absentMin != null" >
+        #{absentMin,jdbcType=INTEGER},
+      </if>
+      <if test="lateMin != null" >
+        #{lateMin,jdbcType=INTEGER},
+      </if>
+      <if test="earlyMin != null" >
+        #{earlyMin,jdbcType=INTEGER},
+      </if>
+      <if test="addressName != null" >
+        #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="radius != null" >
+        #{radius,jdbcType=INTEGER},
+      </if>
+      <if test="crtTime != null" >
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtOpr != null" >
+        #{crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="lstTime != null" >
+        #{lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstOpr != null" >
+        #{lstOpr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.core.model.AttendRuleExample" resultType="java.lang.Integer" >
+    select count(*) from cc_core_attend_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cc_core_attend_rule
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attendName != null" >
+        ATTEND_NAME = #{record.attendName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onTime != null" >
+        ON_TIME = #{record.onTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.offTime != null" >
+        OFF_TIME = #{record.offTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workTime != null" >
+        WORK_TIME = #{record.workTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriousLateMin != null" >
+        SERIOUS_LATE_MIN = #{record.seriousLateMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.absentMin != null" >
+        ABSENT_MIN = #{record.absentMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.lateMin != null" >
+        LATE_MIN = #{record.lateMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.earlyMin != null" >
+        EARLY_MIN = #{record.earlyMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressName != null" >
+        ADDRESS_NAME = #{record.addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null" >
+        LONGITUDE = #{record.longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latitude != null" >
+        LATITUDE = #{record.latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.radius != null" >
+        RADIUS = #{record.radius,jdbcType=INTEGER},
+      </if>
+      <if test="record.crtTime != null" >
+        CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.crtOpr != null" >
+        CRT_OPR = #{record.crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lstTime != null" >
+        LST_TIME = #{record.lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lstOpr != null" >
+        LST_OPR = #{record.lstOpr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cc_core_attend_rule
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ATTEND_NAME = #{record.attendName,jdbcType=VARCHAR},
+      ON_TIME = #{record.onTime,jdbcType=VARCHAR},
+      OFF_TIME = #{record.offTime,jdbcType=VARCHAR},
+      WORK_TIME = #{record.workTime,jdbcType=INTEGER},
+      SERIOUS_LATE_MIN = #{record.seriousLateMin,jdbcType=INTEGER},
+      ABSENT_MIN = #{record.absentMin,jdbcType=INTEGER},
+      LATE_MIN = #{record.lateMin,jdbcType=INTEGER},
+      EARLY_MIN = #{record.earlyMin,jdbcType=INTEGER},
+      ADDRESS_NAME = #{record.addressName,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      LONGITUDE = #{record.longitude,jdbcType=VARCHAR},
+      LATITUDE = #{record.latitude,jdbcType=VARCHAR},
+      RADIUS = #{record.radius,jdbcType=INTEGER},
+      CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      CRT_OPR = #{record.crtOpr,jdbcType=VARCHAR},
+      LST_TIME = #{record.lstTime,jdbcType=TIMESTAMP},
+      LST_OPR = #{record.lstOpr,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.core.model.AttendRule" >
+    update cc_core_attend_rule
+    <set >
+      <if test="attendName != null" >
+        ATTEND_NAME = #{attendName,jdbcType=VARCHAR},
+      </if>
+      <if test="onTime != null" >
+        ON_TIME = #{onTime,jdbcType=VARCHAR},
+      </if>
+      <if test="offTime != null" >
+        OFF_TIME = #{offTime,jdbcType=VARCHAR},
+      </if>
+      <if test="workTime != null" >
+        WORK_TIME = #{workTime,jdbcType=INTEGER},
+      </if>
+      <if test="seriousLateMin != null" >
+        SERIOUS_LATE_MIN = #{seriousLateMin,jdbcType=INTEGER},
+      </if>
+      <if test="absentMin != null" >
+        ABSENT_MIN = #{absentMin,jdbcType=INTEGER},
+      </if>
+      <if test="lateMin != null" >
+        LATE_MIN = #{lateMin,jdbcType=INTEGER},
+      </if>
+      <if test="earlyMin != null" >
+        EARLY_MIN = #{earlyMin,jdbcType=INTEGER},
+      </if>
+      <if test="addressName != null" >
+        ADDRESS_NAME = #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        LONGITUDE = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        LATITUDE = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="radius != null" >
+        RADIUS = #{radius,jdbcType=INTEGER},
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtOpr != null" >
+        CRT_OPR = #{crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="lstTime != null" >
+        LST_TIME = #{lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstOpr != null" >
+        LST_OPR = #{lstOpr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.core.model.AttendRule" >
+    update cc_core_attend_rule
+    set ATTEND_NAME = #{attendName,jdbcType=VARCHAR},
+      ON_TIME = #{onTime,jdbcType=VARCHAR},
+      OFF_TIME = #{offTime,jdbcType=VARCHAR},
+      WORK_TIME = #{workTime,jdbcType=INTEGER},
+      SERIOUS_LATE_MIN = #{seriousLateMin,jdbcType=INTEGER},
+      ABSENT_MIN = #{absentMin,jdbcType=INTEGER},
+      LATE_MIN = #{lateMin,jdbcType=INTEGER},
+      EARLY_MIN = #{earlyMin,jdbcType=INTEGER},
+      ADDRESS_NAME = #{addressName,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      LONGITUDE = #{longitude,jdbcType=VARCHAR},
+      LATITUDE = #{latitude,jdbcType=VARCHAR},
+      RADIUS = #{radius,jdbcType=INTEGER},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      CRT_OPR = #{crtOpr,jdbcType=VARCHAR},
+      LST_TIME = #{lstTime,jdbcType=TIMESTAMP},
+      LST_OPR = #{lstOpr,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryPageList" resultType="java.util.HashMap" parameterType="map">
+    select
+    t.*
+    from cc_core_attend_rule t
+    where 1=1
+    order by t.CRT_TIME desc
+  </select>
+
+  <select id="getInfo" resultType="java.util.HashMap" parameterType="map">
+    select
+    ATTEND_NAME, ON_TIME, OFF_TIME, WORK_TIME, LATE_MIN, EARLY_MIN
+    from cc_core_attend_rule
+    limit 1
+  </select>
+</mapper>

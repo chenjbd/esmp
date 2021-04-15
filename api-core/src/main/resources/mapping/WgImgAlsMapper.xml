@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.core.dao.WgImgAlsMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.core.model.WgImgAls" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="BUSI_ID" property="busiId" jdbcType="VARCHAR" />
+    <result column="IMAGE_ID" property="imageId" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="SIMILARITY" property="similarity" jdbcType="INTEGER" />
+    <result column="INDEX_CODE" property="indexCode" jdbcType="VARCHAR" />
+    <result column="FACE_NAME" property="faceName" jdbcType="VARCHAR" />
+    <result column="FACE_SEX" property="faceSex" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_TYPE" property="certificateType" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_NUM" property="certificateNum" jdbcType="VARCHAR" />
+    <result column="FACE_URL" property="faceUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, BUSI_ID, IMAGE_ID, CRT_TIME, SIMILARITY, INDEX_CODE, FACE_NAME, FACE_SEX, CERTIFICATE_TYPE, 
+    CERTIFICATE_NUM, FACE_URL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.core.model.WgImgAlsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cc_core_wg_img_als
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cc_core_wg_img_als
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cc_core_wg_img_als
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.core.model.WgImgAlsExample" >
+    delete from cc_core_wg_img_als
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.core.model.WgImgAls" >
+    insert into cc_core_wg_img_als (ID, BUSI_ID, IMAGE_ID, 
+      CRT_TIME, SIMILARITY, INDEX_CODE, 
+      FACE_NAME, FACE_SEX, CERTIFICATE_TYPE, 
+      CERTIFICATE_NUM, FACE_URL)
+    values (#{id,jdbcType=VARCHAR}, #{busiId,jdbcType=VARCHAR}, #{imageId,jdbcType=VARCHAR}, 
+      #{crtTime,jdbcType=TIMESTAMP}, #{similarity,jdbcType=INTEGER}, #{indexCode,jdbcType=VARCHAR}, 
+      #{faceName,jdbcType=VARCHAR}, #{faceSex,jdbcType=VARCHAR}, #{certificateType,jdbcType=VARCHAR}, 
+      #{certificateNum,jdbcType=VARCHAR}, #{faceUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.core.model.WgImgAls" >
+    insert into cc_core_wg_img_als
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="busiId != null" >
+        BUSI_ID,
+      </if>
+      <if test="imageId != null" >
+        IMAGE_ID,
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME,
+      </if>
+      <if test="similarity != null" >
+        SIMILARITY,
+      </if>
+      <if test="indexCode != null" >
+        INDEX_CODE,
+      </if>
+      <if test="faceName != null" >
+        FACE_NAME,
+      </if>
+      <if test="faceSex != null" >
+        FACE_SEX,
+      </if>
+      <if test="certificateType != null" >
+        CERTIFICATE_TYPE,
+      </if>
+      <if test="certificateNum != null" >
+        CERTIFICATE_NUM,
+      </if>
+      <if test="faceUrl != null" >
+        FACE_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="busiId != null" >
+        #{busiId,jdbcType=VARCHAR},
+      </if>
+      <if test="imageId != null" >
+        #{imageId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="similarity != null" >
+        #{similarity,jdbcType=INTEGER},
+      </if>
+      <if test="indexCode != null" >
+        #{indexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="faceName != null" >
+        #{faceName,jdbcType=VARCHAR},
+      </if>
+      <if test="faceSex != null" >
+        #{faceSex,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null" >
+        #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateNum != null" >
+        #{certificateNum,jdbcType=VARCHAR},
+      </if>
+      <if test="faceUrl != null" >
+        #{faceUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.core.model.WgImgAlsExample" resultType="java.lang.Integer" >
+    select count(*) from cc_core_wg_img_als
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cc_core_wg_img_als
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiId != null" >
+        BUSI_ID = #{record.busiId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageId != null" >
+        IMAGE_ID = #{record.imageId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crtTime != null" >
+        CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.similarity != null" >
+        SIMILARITY = #{record.similarity,jdbcType=INTEGER},
+      </if>
+      <if test="record.indexCode != null" >
+        INDEX_CODE = #{record.indexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.faceName != null" >
+        FACE_NAME = #{record.faceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.faceSex != null" >
+        FACE_SEX = #{record.faceSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certificateType != null" >
+        CERTIFICATE_TYPE = #{record.certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certificateNum != null" >
+        CERTIFICATE_NUM = #{record.certificateNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.faceUrl != null" >
+        FACE_URL = #{record.faceUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cc_core_wg_img_als
+    set ID = #{record.id,jdbcType=VARCHAR},
+      BUSI_ID = #{record.busiId,jdbcType=VARCHAR},
+      IMAGE_ID = #{record.imageId,jdbcType=VARCHAR},
+      CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      SIMILARITY = #{record.similarity,jdbcType=INTEGER},
+      INDEX_CODE = #{record.indexCode,jdbcType=VARCHAR},
+      FACE_NAME = #{record.faceName,jdbcType=VARCHAR},
+      FACE_SEX = #{record.faceSex,jdbcType=VARCHAR},
+      CERTIFICATE_TYPE = #{record.certificateType,jdbcType=VARCHAR},
+      CERTIFICATE_NUM = #{record.certificateNum,jdbcType=VARCHAR},
+      FACE_URL = #{record.faceUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.core.model.WgImgAls" >
+    update cc_core_wg_img_als
+    <set >
+      <if test="busiId != null" >
+        BUSI_ID = #{busiId,jdbcType=VARCHAR},
+      </if>
+      <if test="imageId != null" >
+        IMAGE_ID = #{imageId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="similarity != null" >
+        SIMILARITY = #{similarity,jdbcType=INTEGER},
+      </if>
+      <if test="indexCode != null" >
+        INDEX_CODE = #{indexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="faceName != null" >
+        FACE_NAME = #{faceName,jdbcType=VARCHAR},
+      </if>
+      <if test="faceSex != null" >
+        FACE_SEX = #{faceSex,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null" >
+        CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateNum != null" >
+        CERTIFICATE_NUM = #{certificateNum,jdbcType=VARCHAR},
+      </if>
+      <if test="faceUrl != null" >
+        FACE_URL = #{faceUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.core.model.WgImgAls" >
+    update cc_core_wg_img_als
+    set BUSI_ID = #{busiId,jdbcType=VARCHAR},
+      IMAGE_ID = #{imageId,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      SIMILARITY = #{similarity,jdbcType=INTEGER},
+      INDEX_CODE = #{indexCode,jdbcType=VARCHAR},
+      FACE_NAME = #{faceName,jdbcType=VARCHAR},
+      FACE_SEX = #{faceSex,jdbcType=VARCHAR},
+      CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+      CERTIFICATE_NUM = #{certificateNum,jdbcType=VARCHAR},
+      FACE_URL = #{faceUrl,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryWgImgAlsPageList" resultType="java.util.HashMap" parameterType="java.util.HashMap" >
+    select
+    imgals.*
+    from cc_core_wg_img img
+    inner join cc_core_wg_img_als imgals on img.ID = imgals.IMAGE_ID
+    where 1=1
+    and img.BUSI_ID = #{busiId,jdbcType=VARCHAR}
+    <if test='customerName != null and customerName !=""' >
+      and imgals.FACE_NAME like #{customerName,jdbcType=VARCHAR}
+    </if>
+    <if test='paperNo != null and paperNo != ""'>
+      and imgals.CERTIFICATE_NUM = #{paperNo,jdbcType=VARCHAR}
+    </if>
+    order by img.SEQNO, imgals.SIMILARITY desc
+  </select>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.core.dao.PositionMapper" >
+  <select id="getPosTreeData" resultType="java.util.HashMap" parameterType="map">
+    select t.POS_NO "id", t.POS_NAME "name", t.SUPER_POS "pId",
+    case (select count(1) from cc_core_position a where a.SUPER_POS = t.POS_NO) when 0 then 'false' else 'true' end "isParent",
+    t.NAME_FULL_PATH "nameFullPath"
+    from cc_core_position t
+    where 1=1
+    <if test='pId != null and pId !=""'>
+      and t.SUPER_POS = #{pId, jdbcType=VARCHAR}
+    </if>
+    order by t.POS_NO
+  </select>
+
+  <select id="countPosNo" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(1)
+    from cc_core_position t
+    where 1=1
+    and t.POS_NO = #{posNo, jdbcType=VARCHAR}
+  </select>
+</mapper>

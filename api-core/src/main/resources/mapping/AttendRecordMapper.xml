@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.core.dao.AttendRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.core.model.AttendRecord" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ATTEND_DATE" property="attendDate" jdbcType="VARCHAR" />
+    <result column="CHECK_OPR" property="checkOpr" jdbcType="VARCHAR" />
+    <result column="CHECK_ON_TIME" property="checkOnTime" jdbcType="TIMESTAMP" />
+    <result column="CHECK_OFF_TIME" property="checkOffTime" jdbcType="TIMESTAMP" />
+    <result column="IS_LATE" property="isLate" jdbcType="VARCHAR" />
+    <result column="IS_EARLY" property="isEarly" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="CRT_OPR" property="crtOpr" jdbcType="VARCHAR" />
+    <result column="LST_TIME" property="lstTime" jdbcType="TIMESTAMP" />
+    <result column="LST_OPR" property="lstOpr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ATTEND_DATE, CHECK_OPR, CHECK_ON_TIME, CHECK_OFF_TIME, IS_LATE, IS_EARLY, CRT_TIME, 
+    CRT_OPR, LST_TIME, LST_OPR
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.core.model.AttendRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from cc_core_attend_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cc_core_attend_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cc_core_attend_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.core.model.AttendRecordExample" >
+    delete from cc_core_attend_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.core.model.AttendRecord" >
+    insert into cc_core_attend_record (ID, ATTEND_DATE, CHECK_OPR, 
+      CHECK_ON_TIME, CHECK_OFF_TIME, IS_LATE, 
+      IS_EARLY, CRT_TIME, CRT_OPR, 
+      LST_TIME, LST_OPR)
+    values (#{id,jdbcType=VARCHAR}, #{attendDate,jdbcType=VARCHAR}, #{checkOpr,jdbcType=VARCHAR}, 
+      #{checkOnTime,jdbcType=TIMESTAMP}, #{checkOffTime,jdbcType=TIMESTAMP}, #{isLate,jdbcType=VARCHAR}, 
+      #{isEarly,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, #{crtOpr,jdbcType=VARCHAR}, 
+      #{lstTime,jdbcType=TIMESTAMP}, #{lstOpr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.core.model.AttendRecord" >
+    insert into cc_core_attend_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="attendDate != null" >
+        ATTEND_DATE,
+      </if>
+      <if test="checkOpr != null" >
+        CHECK_OPR,
+      </if>
+      <if test="checkOnTime != null" >
+        CHECK_ON_TIME,
+      </if>
+      <if test="checkOffTime != null" >
+        CHECK_OFF_TIME,
+      </if>
+      <if test="isLate != null" >
+        IS_LATE,
+      </if>
+      <if test="isEarly != null" >
+        IS_EARLY,
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME,
+      </if>
+      <if test="crtOpr != null" >
+        CRT_OPR,
+      </if>
+      <if test="lstTime != null" >
+        LST_TIME,
+      </if>
+      <if test="lstOpr != null" >
+        LST_OPR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="attendDate != null" >
+        #{attendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="checkOpr != null" >
+        #{checkOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="checkOnTime != null" >
+        #{checkOnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkOffTime != null" >
+        #{checkOffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isLate != null" >
+        #{isLate,jdbcType=VARCHAR},
+      </if>
+      <if test="isEarly != null" >
+        #{isEarly,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtOpr != null" >
+        #{crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="lstTime != null" >
+        #{lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstOpr != null" >
+        #{lstOpr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.core.model.AttendRecordExample" resultType="java.lang.Integer" >
+    select count(*) from cc_core_attend_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cc_core_attend_record
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attendDate != null" >
+        ATTEND_DATE = #{record.attendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkOpr != null" >
+        CHECK_OPR = #{record.checkOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkOnTime != null" >
+        CHECK_ON_TIME = #{record.checkOnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.checkOffTime != null" >
+        CHECK_OFF_TIME = #{record.checkOffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isLate != null" >
+        IS_LATE = #{record.isLate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isEarly != null" >
+        IS_EARLY = #{record.isEarly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crtTime != null" >
+        CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.crtOpr != null" >
+        CRT_OPR = #{record.crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lstTime != null" >
+        LST_TIME = #{record.lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lstOpr != null" >
+        LST_OPR = #{record.lstOpr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cc_core_attend_record
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ATTEND_DATE = #{record.attendDate,jdbcType=VARCHAR},
+      CHECK_OPR = #{record.checkOpr,jdbcType=VARCHAR},
+      CHECK_ON_TIME = #{record.checkOnTime,jdbcType=TIMESTAMP},
+      CHECK_OFF_TIME = #{record.checkOffTime,jdbcType=TIMESTAMP},
+      IS_LATE = #{record.isLate,jdbcType=VARCHAR},
+      IS_EARLY = #{record.isEarly,jdbcType=VARCHAR},
+      CRT_TIME = #{record.crtTime,jdbcType=TIMESTAMP},
+      CRT_OPR = #{record.crtOpr,jdbcType=VARCHAR},
+      LST_TIME = #{record.lstTime,jdbcType=TIMESTAMP},
+      LST_OPR = #{record.lstOpr,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.core.model.AttendRecord" >
+    update cc_core_attend_record
+    <set >
+      <if test="attendDate != null" >
+        ATTEND_DATE = #{attendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="checkOpr != null" >
+        CHECK_OPR = #{checkOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="checkOnTime != null" >
+        CHECK_ON_TIME = #{checkOnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkOffTime != null" >
+        CHECK_OFF_TIME = #{checkOffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isLate != null" >
+        IS_LATE = #{isLate,jdbcType=VARCHAR},
+      </if>
+      <if test="isEarly != null" >
+        IS_EARLY = #{isEarly,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtOpr != null" >
+        CRT_OPR = #{crtOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="lstTime != null" >
+        LST_TIME = #{lstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lstOpr != null" >
+        LST_OPR = #{lstOpr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.core.model.AttendRecord" >
+    update cc_core_attend_record
+    set ATTEND_DATE = #{attendDate,jdbcType=VARCHAR},
+      CHECK_OPR = #{checkOpr,jdbcType=VARCHAR},
+      CHECK_ON_TIME = #{checkOnTime,jdbcType=TIMESTAMP},
+      CHECK_OFF_TIME = #{checkOffTime,jdbcType=TIMESTAMP},
+      IS_LATE = #{isLate,jdbcType=VARCHAR},
+      IS_EARLY = #{isEarly,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      CRT_OPR = #{crtOpr,jdbcType=VARCHAR},
+      LST_TIME = #{lstTime,jdbcType=TIMESTAMP},
+      LST_OPR = #{lstOpr,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

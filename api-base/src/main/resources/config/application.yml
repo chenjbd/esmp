@@ -1,0 +1,32 @@
+#restTemplate 连接时间、读取时间
+rest-template:
+  connect-timeout: 3000
+  read-timeout: 10000
+  charset: UTF-8
+
+wx:
+  appid: wx096e76803f90c8e9
+  secret: 107e18a4b5293796e9be881d13a8e28a
+  urls:
+    #登录凭证校验
+    code2Session: https://api.weixin.qq.com/sns/jscode2session
+
+hik:
+  enabled: false
+  http: https:// #根据现场环境部署确认是http还是https
+  host: 127.0.0.1:443
+  appKey: 29180881
+  appSecret: XO0wCAYGi4KV70ybjznx
+  artemis_path: /artemis
+  urls:
+    addFaceGroup: /api/frs/v1/face/group/single/addition #单个添加人脸分组
+    delFaceGroup: /api/frs/v1/face/group/batch/deletion #删除人脸分组
+    uptFaceGroup: /api/frs/v1/face/group/single/update #单个修改人脸分组
+    addFace: /api/frs/v1/face/single/addition #单个添加人脸
+    delFace: /api/frs/v1/face/deletion #批量删除人脸
+    findFace: /api/frs/v1/face #按条件批量查询人脸
+    addEvent: /api/eventService/v1/eventSubscriptionByEventTypes #按事件类型订阅事件
+    delEvent: /api/eventService/v1/eventUnSubscriptionByEventTypes #按事件类型取消订阅
+    oneToMany: /api/frs/v1/application/oneToMany #人脸分组1VN检索
+    camera:
+      timeRange: /api/resource/v1/camera/timeRange #增量获取监控点数据

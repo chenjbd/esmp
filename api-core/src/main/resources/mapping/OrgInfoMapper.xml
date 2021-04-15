@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.app.pms.dao.OrgInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.app.pms.model.OrgInfo" >
+    <id column="ORGID" property="orgid" jdbcType="VARCHAR" />
+    <result column="ORGNAME" property="orgname" jdbcType="VARCHAR" />
+    <result column="ORGNO" property="orgno" jdbcType="VARCHAR" />
+    <result column="ORG_TYPE" property="orgType" jdbcType="CHAR" />
+    <result column="ORG_KIND" property="orgKind" jdbcType="VARCHAR" />
+    <result column="LEAD_NAME" property="leadName" jdbcType="VARCHAR" />
+    <result column="LEAD_PAPER_TYPE" property="leadPaperType" jdbcType="VARCHAR" />
+    <result column="LEAD_PAPER_NO" property="leadPaperNo" jdbcType="VARCHAR" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="POSTCODE" property="postcode" jdbcType="CHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="STREET" property="street" jdbcType="VARCHAR" />
+    <result column="COMMUNITY" property="community" jdbcType="VARCHAR" />
+    <result column="REGION" property="region" jdbcType="VARCHAR" />
+    <result column="SUPER_ORG" property="superOrg" jdbcType="VARCHAR" />
+    <result column="DIRECTOR_DEP" property="directorDep" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="UPT_OPR" property="uptOpr" jdbcType="VARCHAR" />
+    <result column="UPT_TIME" property="uptTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ORGID, ORGNAME, ORGNO, ORG_TYPE, ORG_KIND, LEAD_NAME, LEAD_PAPER_TYPE, LEAD_PAPER_NO,
+    CONTACT_NAME, CONTACT_PHONE, FAX, POSTCODE, EMAIL, ADDRESS, STREET, COMMUNITY, REGION,
+    SUPER_ORG, DIRECTOR_DEP, STATUS, REMARK, UPT_OPR, UPT_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cc.app.pms.model.OrgInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from CC_PMS_ORG_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from CC_PMS_ORG_INFO
+    where ORGID = #{orgid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from CC_PMS_ORG_INFO
+    where ORGID = #{orgid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cc.app.pms.model.OrgInfoExample" >
+    delete from CC_PMS_ORG_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cc.app.pms.model.OrgInfo" >
+    insert into CC_PMS_ORG_INFO (ORGID, ORGNAME, ORGNO,
+      ORG_TYPE, ORG_KIND, LEAD_NAME,
+      LEAD_PAPER_TYPE, LEAD_PAPER_NO, CONTACT_NAME,
+      CONTACT_PHONE, FAX, POSTCODE,
+      EMAIL, ADDRESS, STREET,
+      COMMUNITY, REGION, SUPER_ORG,
+      DIRECTOR_DEP, STATUS, REMARK,
+      UPT_OPR, UPT_TIME)
+    values (#{orgid,jdbcType=VARCHAR}, #{orgname,jdbcType=VARCHAR}, #{orgno,jdbcType=VARCHAR},
+      #{orgType,jdbcType=CHAR}, #{orgKind,jdbcType=VARCHAR}, #{leadName,jdbcType=VARCHAR},
+      #{leadPaperType,jdbcType=VARCHAR}, #{leadPaperNo,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR},
+      #{contactPhone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{postcode,jdbcType=CHAR},
+      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR},
+      #{community,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{superOrg,jdbcType=VARCHAR},
+      #{directorDep,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR},
+      #{uptOpr,jdbcType=VARCHAR}, #{uptTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.app.pms.model.OrgInfo" >
+    insert into CC_PMS_ORG_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orgid != null" >
+        ORGID,
+      </if>
+      <if test="orgname != null" >
+        ORGNAME,
+      </if>
+      <if test="orgno != null" >
+        ORGNO,
+      </if>
+      <if test="orgType != null" >
+        ORG_TYPE,
+      </if>
+      <if test="orgKind != null" >
+        ORG_KIND,
+      </if>
+      <if test="leadName != null" >
+        LEAD_NAME,
+      </if>
+      <if test="leadPaperType != null" >
+        LEAD_PAPER_TYPE,
+      </if>
+      <if test="leadPaperNo != null" >
+        LEAD_PAPER_NO,
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME,
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE,
+      </if>
+      <if test="fax != null" >
+        FAX,
+      </if>
+      <if test="postcode != null" >
+        POSTCODE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="street != null" >
+        STREET,
+      </if>
+      <if test="community != null" >
+        COMMUNITY,
+      </if>
+      <if test="region != null" >
+        REGION,
+      </if>
+      <if test="superOrg != null" >
+        SUPER_ORG,
+      </if>
+      <if test="directorDep != null" >
+        DIRECTOR_DEP,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="uptOpr != null" >
+        UPT_OPR,
+      </if>
+      <if test="uptTime != null" >
+        UPT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orgid != null" >
+        #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="orgname != null" >
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgno != null" >
+        #{orgno,jdbcType=VARCHAR},
+      </if>
+      <if test="orgType != null" >
+        #{orgType,jdbcType=CHAR},
+      </if>
+      <if test="orgKind != null" >
+        #{orgKind,jdbcType=VARCHAR},
+      </if>
+      <if test="leadName != null" >
+        #{leadName,jdbcType=VARCHAR},
+      </if>
+      <if test="leadPaperType != null" >
+        #{leadPaperType,jdbcType=VARCHAR},
+      </if>
+      <if test="leadPaperNo != null" >
+        #{leadPaperNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="community != null" >
+        #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="superOrg != null" >
+        #{superOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="directorDep != null" >
+        #{directorDep,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="uptOpr != null" >
+        #{uptOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="uptTime != null" >
+        #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cc.app.pms.model.OrgInfoExample" resultType="java.lang.Integer" >
+    select count(*) from CC_PMS_ORG_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update CC_PMS_ORG_INFO
+    <set >
+      <if test="record.orgid != null" >
+        ORGID = #{record.orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgname != null" >
+        ORGNAME = #{record.orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgno != null" >
+        ORGNO = #{record.orgno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgType != null" >
+        ORG_TYPE = #{record.orgType,jdbcType=CHAR},
+      </if>
+      <if test="record.orgKind != null" >
+        ORG_KIND = #{record.orgKind,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leadName != null" >
+        LEAD_NAME = #{record.leadName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leadPaperType != null" >
+        LEAD_PAPER_TYPE = #{record.leadPaperType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leadPaperNo != null" >
+        LEAD_PAPER_NO = #{record.leadPaperNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactName != null" >
+        CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhone != null" >
+        CONTACT_PHONE = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fax != null" >
+        FAX = #{record.fax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postcode != null" >
+        POSTCODE = #{record.postcode,jdbcType=CHAR},
+      </if>
+      <if test="record.email != null" >
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.street != null" >
+        STREET = #{record.street,jdbcType=VARCHAR},
+      </if>
+      <if test="record.community != null" >
+        COMMUNITY = #{record.community,jdbcType=VARCHAR},
+      </if>
+      <if test="record.region != null" >
+        REGION = #{record.region,jdbcType=VARCHAR},
+      </if>
+      <if test="record.superOrg != null" >
+        SUPER_ORG = #{record.superOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.directorDep != null" >
+        DIRECTOR_DEP = #{record.directorDep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uptOpr != null" >
+        UPT_OPR = #{record.uptOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uptTime != null" >
+        UPT_TIME = #{record.uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update CC_PMS_ORG_INFO
+    set ORGID = #{record.orgid,jdbcType=VARCHAR},
+      ORGNAME = #{record.orgname,jdbcType=VARCHAR},
+      ORGNO = #{record.orgno,jdbcType=VARCHAR},
+      ORG_TYPE = #{record.orgType,jdbcType=CHAR},
+      ORG_KIND = #{record.orgKind,jdbcType=VARCHAR},
+      LEAD_NAME = #{record.leadName,jdbcType=VARCHAR},
+      LEAD_PAPER_TYPE = #{record.leadPaperType,jdbcType=VARCHAR},
+      LEAD_PAPER_NO = #{record.leadPaperNo,jdbcType=VARCHAR},
+      CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{record.contactPhone,jdbcType=VARCHAR},
+      FAX = #{record.fax,jdbcType=VARCHAR},
+      POSTCODE = #{record.postcode,jdbcType=CHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      STREET = #{record.street,jdbcType=VARCHAR},
+      COMMUNITY = #{record.community,jdbcType=VARCHAR},
+      REGION = #{record.region,jdbcType=VARCHAR},
+      SUPER_ORG = #{record.superOrg,jdbcType=VARCHAR},
+      DIRECTOR_DEP = #{record.directorDep,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=CHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      UPT_OPR = #{record.uptOpr,jdbcType=VARCHAR},
+      UPT_TIME = #{record.uptTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.app.pms.model.OrgInfo" >
+    update CC_PMS_ORG_INFO
+    <set >
+      <if test="orgname != null" >
+        ORGNAME = #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgno != null" >
+        ORGNO = #{orgno,jdbcType=VARCHAR},
+      </if>
+      <if test="orgType != null" >
+        ORG_TYPE = #{orgType,jdbcType=CHAR},
+      </if>
+      <if test="orgKind != null" >
+        ORG_KIND = #{orgKind,jdbcType=VARCHAR},
+      </if>
+      <if test="leadName != null" >
+        LEAD_NAME = #{leadName,jdbcType=VARCHAR},
+      </if>
+      <if test="leadPaperType != null" >
+        LEAD_PAPER_TYPE = #{leadPaperType,jdbcType=VARCHAR},
+      </if>
+      <if test="leadPaperNo != null" >
+        LEAD_PAPER_NO = #{leadPaperNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        FAX = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        POSTCODE = #{postcode,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        STREET = #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="community != null" >
+        COMMUNITY = #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        REGION = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="superOrg != null" >
+        SUPER_ORG = #{superOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="directorDep != null" >
+        DIRECTOR_DEP = #{directorDep,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="uptOpr != null" >
+        UPT_OPR = #{uptOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="uptTime != null" >
+        UPT_TIME = #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ORGID = #{orgid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.app.pms.model.OrgInfo" >
+    update CC_PMS_ORG_INFO
+    set ORGNAME = #{orgname,jdbcType=VARCHAR},
+      ORGNO = #{orgno,jdbcType=VARCHAR},
+      ORG_TYPE = #{orgType,jdbcType=CHAR},
+      ORG_KIND = #{orgKind,jdbcType=VARCHAR},
+      LEAD_NAME = #{leadName,jdbcType=VARCHAR},
+      LEAD_PAPER_TYPE = #{leadPaperType,jdbcType=VARCHAR},
+      LEAD_PAPER_NO = #{leadPaperNo,jdbcType=VARCHAR},
+      CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      POSTCODE = #{postcode,jdbcType=CHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      STREET = #{street,jdbcType=VARCHAR},
+      COMMUNITY = #{community,jdbcType=VARCHAR},
+      REGION = #{region,jdbcType=VARCHAR},
+      SUPER_ORG = #{superOrg,jdbcType=VARCHAR},
+      DIRECTOR_DEP = #{directorDep,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      UPT_OPR = #{uptOpr,jdbcType=VARCHAR},
+      UPT_TIME = #{uptTime,jdbcType=TIMESTAMP}
+    where ORGID = #{orgid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryPageList" resultType="java.util.HashMap" parameterType="map">
+    select
+    t.*, t1.ORGNAME SUPER_ORGNAME
+    from CC_PMS_ORG_INFO t
+    left join CC_PMS_ORG_INFO t1 on t.SUPER_ORG = t1.ORGNO
+    where 1=1
+    <if test="queryParams.orgname != null and queryParams.orgname != ''">
+      <bind name="pattern" value="'%' + queryParams.orgname + '%'"/>
+      and t.ORGNAME like #{pattern}
+    </if>
+    <if test="queryParams.superorg != null and queryParams.superorg != ''">
+      and t.SUPER_ORG = #{queryParams.superorg}
+    </if>
+    order by t.ORGNO
+  </select>
+
+  <select id="selectOrgList" resultMap="BaseResultMap"  parameterType="java.lang.String" >
+    select * from CC_PMS_ORG_INFO
+    where 1=1
+    and STATUS = '1'
+    <if test="superOrg != null and superOrg != ''">
+      and SUPER_ORG = #{superOrg,jdbcType=VARCHAR}
+    </if>
+    order by SUPER_ORG, ORGID
+  </select>
+
+  <select id="findOrgDicByOrgNo" resultType="java.util.HashMap" parameterType="map" >
+    select
+    ORGID "dicKey",ORGNAME "dicValue"
+    from CC_PMS_ORG_INFO
+    where 1=1
+    and STATUS = '1'
+    <if test="params.orgNo != null and params.orgNo != ''">
+      and ORGNO = #{params.orgNo,jdbcType=VARCHAR}
+    </if>
+    <if test="params.orgName != null and params.orgName != ''">
+      <bind name="pattern" value="'%' + params.orgName + '%'" />
+      and ORGNAME like #{pattern}
+    </if>
+    order by ORGID
+  </select>
+
+  <select id="findOrgDic" resultType="java.util.HashMap" parameterType="map" >
+    select
+    ORGNO "dicKey",ORGNAME "dicValue"
+    from CC_PMS_ORG_INFO
+    where 1=1
+    and STATUS = '1'
+    <if test=' searchMap.hasAdminOrg == null or searchMap.hasAdminOrg == "" '>
+      and ORGNO &lt;&gt; 'root'
+    </if>
+    order by ORGNO
+  </select>
+
+  <select id="selectByOrgno" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from CC_PMS_ORG_INFO
+    where ORGNO = #{orgno,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectOrgByParent" resultType="java.util.HashMap" parameterType="java.lang.String">
+    select ORGID, ORGNAME "name", ORGNO "id", SUPER_ORG "pid" from CC_PMS_ORG_INFO
+    where 1=1
+    and SUPER_ORG = #{superOrg,jdbcType=VARCHAR}
+    order by ORGNO
+  </select>
+
+  <select id="findOrgInfo" resultType="java.util.HashMap" parameterType="java.lang.String">
+    select
+    t.*, t1.ORGNAME SUPER_ORGNAME
+    from CC_PMS_ORG_INFO t
+    left join CC_PMS_ORG_INFO t1 on t.SUPER_ORG = t1.ORGNO
+    where 1=1
+    and t.ORGID = #{orgid,jdbcType=VARCHAR}
+  </select>
+
+</mapper>
